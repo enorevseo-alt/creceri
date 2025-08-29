@@ -1,4 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.getElementById('navbar');
+  if (!nav) return;
+
+  const links = nav.querySelectorAll('a.nav-link, .dropdown-menu a.dropdown-item');
+
+  const norm = (href) => {
+    try {
+      const u = new URL(href, window.location.origin);
+      let p = u.pathname.toLowerCase();
+      if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+      return p;
+    } catch { return href; }
+  };
+
+  const current = norm(window.location.pathname);
+
+  links.forEach(a => a.classList.remove('active'));
+
+  // 1) exact match
+  let best = null, bestLen = -1;
+  links.forEach(a => {
+    const p = norm(a.getAttribute('href'));
+    if (p === current) { best = a; bestLen = p.length; }
+  });
+
+  // 2) fallback: longest prefix (but not "/")
+  if (!best) {
+    links.forEach(a => {
+      const p = norm(a.getAttribute('href'));
+      if (p !== '/' && current.startsWith(p) && p.length > bestLen) {
+        best = a; bestLen = p.length;
+      }
+    });
+  }
+
+  if (best) {
+    best.classList.add('active');
+
+    // if it's a dropdown item, also mark its parent toggle active
+    const menu = best.closest('.dropdown-menu');
+    if (menu) {
+      const parentToggle = menu.parentElement?.querySelector('> a.dropdown-toggle, > .nav-link.dropdown-toggle');
+      if (parentToggle) parentToggle.classList.add('active');
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
   const isDesktop = () => window.matchMedia('(min-width: 992px)').matches;
 
   // Submenu parents: first tap opens, second tap navigates
@@ -37,18 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const text = "Ceceri | E-commerce, UX & Digital Knowledge";
-  const typingSpeed = 90; // ms per character
-  const target = document.getElementById('typing-text');
-  
-  let i = 0;
-  function type() {
-    if (i < text.length) {
-      target.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, typingSpeed);
-    }
+  const el = document.getElementById('heroBg');
+  if (el && window.bootstrap) {
+    bootstrap.Carousel.getOrCreateInstance(el, {
+      interval: 2000,   // 2s
+      ride: 'carousel',
+      pause: false,
+      touch: true,
+      wrap: true
+    });
   }
-  type();
 });
 

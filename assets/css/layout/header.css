@@ -1,0 +1,109 @@
+.wp-block-template-part #navbar{
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 1040;
+  background: rgba(255,255,255,.9) !important;
+  backdrop-filter: saturate(160%) blur(6px);
+  -webkit-backdrop-filter: saturate(160%) blur(6px);
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+/* Make sure parents don’t break fixed/stacking */
+.wp-site-blocks,
+.wp-block-template-part,
+.wp-block-group,
+.wp-block-group__inner-container{
+  overflow: visible !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Spacing between items */
+#navbar .navbar-nav .nav-item{ margin: 0 .35rem; }
+
+/* Top-level links */
+#navbar .nav-link{
+  color:#000 !important;
+  border-radius:.6rem;
+  padding:.45rem 1rem;
+  font-weight:700;
+  transition: color .15s ease, background-color .15s ease;
+}
+
+/* Hover = red text (not pill) when not active */
+#navbar .nav-link:hover:not(.active){ color:#dc3545 !important; }
+
+/* Active or open = red pill + white text */
+#navbar .nav-item .nav-link.active,
+#navbar .nav-item.show > .nav-link{
+  background:#dc3545;
+  color:#fff !important;
+}
+
+/* ------------ Dropdown look ------------ */
+#navbar .dropdown-menu{
+  --panel-bg:#ededed;
+  background:var(--panel-bg);
+  border:0; border-radius:.5rem; padding:.5rem;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  min-width:18rem;
+}
+
+/* Remove Bootstrap caret on submenu parents, we’ll use our own chevron */
+#navbar .dropdown-submenu > .dropdown-toggle::after{ display:none; }
+
+/* Submenu parent row (Region) */
+#navbar .dropdown-menu > .dropdown-submenu > .dropdown-toggle{
+  position:relative; font-weight:700; color:#666;
+  border-radius:.35rem; padding:.6rem .9rem;
+}
+#navbar .dropdown-menu > .dropdown-submenu > .dropdown-toggle:hover{
+  background:rgba(0,0,0,.05); color:#333;
+}
+
+#navbar .dropdown-menu > .dropdown-submenu > .dropdown-toggle::after{
+  content:"›";
+  position:absolute; right:.65rem; top:50%; transform:translateY(-48%);
+  font-weight:700; opacity:.5;
+}
+
+/* Country rows */
+#navbar .dropdown-item{
+  border-radius:.35rem; padding:.6rem .9rem; font-weight:700; color:#666 !important;
+}
+#navbar .dropdown-item:hover{ background:#dc3545 !important; color:#fff !important; }
+
+/* ------------ Desktop interactions ------------ */
+#navbar .dropdown-submenu{ position:relative; }
+
+@media (min-width:992px){
+  /* 1st panel under Destinations: fade/slide in on hover/focus */
+  #navbar .nav-item.dropdown > .dropdown-menu{
+    display:block; opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+  }
+  #navbar .nav-item.dropdown:hover > .dropdown-menu,
+  #navbar .nav-item.dropdown:focus-within > .dropdown-menu{
+    opacity:1; visibility:visible; transform:translateY(0); transition-delay:0s;
+  }
+
+  /* Flyout panel to the right for submenus */
+  #navbar .dropdown-submenu > .dropdown-menu{
+    display:block; opacity:0; visibility:hidden; transform:translateX(10px);
+    transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+    top:0; left:100%; margin-left:.35rem; min-width:16rem;
+    background:var(--panel-bg); border:0; border-radius:.5rem; padding:.5rem;
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+  }
+  #navbar .dropdown-submenu:hover > .dropdown-menu,
+  #navbar .dropdown-submenu:focus-within > .dropdown-menu{
+    opacity:1; visibility:visible; transform:translateX(0); transition-delay:0s;
+  }
+}
+
+/* ------------ Mobile submenu visibility ------------ */
+@media (max-width:991.98px){
+  /* only show nested submenu when .show is set by JS */
+  #navbar .dropdown-submenu > .dropdown-menu{ display:none; }
+  #navbar .dropdown-submenu > .dropdown-menu.show{ display:block; }
+}
