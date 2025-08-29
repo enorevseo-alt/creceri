@@ -1,0 +1,19 @@
+/* Container */
+.whats-new-editor { border: 1px dashed #d0d7de; background: #f8fafc; padding: 16px; border-radius: 8px; }
+.whats-new-editor .wn-title { font-weight: 700; margin: 0 0 6px; }
+.whats-new-editor .wn-title.is-placeholder { opacity: .6; }
+.whats-new-editor .wn-intro { color: #6b7280; margin: 0 0 12px; }
+
+/* Grid */
+.whats-new-editor .wn-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 782px) { .whats-new-editor .wn-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Card */
+.whats-new-editor .wn-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; position: relative; }
+.whats-new-editor .wn-card-toolbar { position: absolute; top: 6px; right: 6px; z-index: 1; }
+.whats-new-editor .wn-img-wrap { position: relative; }
+.whats-new-editor .wn-img, .whats-new-editor .wn-img-skel { display: block; width: 100%; height: 120px; object-fit: cover; background: #eef2f7; }
+.whats-new-editor .wn-img-actions { position: absolute; bottom: 6px; right: 6px; display: flex; gap: 6px; }
+.whats-new-editor .wn-body { padding: 10px 12px 12px; }
+.whats-new-editor .wn-actions { text-align: center; margin-top: 12px; }
+.whats-new-editor .wn-cta { text-align: center; margin-top: 12px; }

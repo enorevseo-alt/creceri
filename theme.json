@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "$schema": "https://schemas.wp.org/wp/6.8/theme.json",
+    "templateParts": [
+    { "name": "header-custom", "title": "Header (Custom)", "area": "header" },
+    { "name": "footer-custom", "title": "Footer (Custom)", "area": "footer" }
+
+  ],
+  "settings": {
+    "layout": {
+      "contentSize": "",
+      "wideSize": "",
+      "defaultLayout": false
+    },
+    "spacing": {
+      "padding": false,
+      "blockGap": false
+    }
+  },
+  "styles": {
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "100%"
+    }
+  },
+  "customTemplates": [
+    {
+      "name": "home",
+      "title": "Custom Home Page",
+      "postTypes": ["page"]
+    }
+  ]
+}

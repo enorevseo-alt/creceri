@@ -1,0 +1,22 @@
+/* Archive hero */
+.archive-hero {
+  padding: clamp(32px, 6vw, 72px) 1rem;
+  text-align: center;
+  background: linear-gradient(180deg, #fde9dc 0%, #fff 80%);
+  border-radius: 1rem;
+  margin-bottom: clamp(16px, 3vw, 32px);
+}
+
+/* Card polish */
+.ag-card { border-radius: 1rem; overflow: hidden; }
+.ag-card .card-img-top { border-top-left-radius: 1rem; border-top-right-radius: 1rem; }
+.ag-excerpt {
+  display: -webkit-box; -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+  max-width: 60ch;
+}
+
+/* Make the pagination look neat with Bootstrap */
+.page-item .page-link { color: #dc3545; }
+.page-item.active .page-link,
+.page-item .page-link:hover { background-color: #dc3545; color: #fff; }

@@ -1,0 +1,48 @@
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand text-danger fw-bold" href="/">Logo</a>
+    <button id="navBurger" class="navbar-toggler ms-auto" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mt-2 gap-2 mb-lg-0">
+
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+
+        <!-- Destinations dropdown -->
+        <li class="nav-item dropdown" data-bs-auto-close="outside">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Destinations</a>
+
+          <ul class="dropdown-menu">
+            <!-- South East Asia -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="/southeast-asia">South East Asia</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/southeast-asia/philippines">Philippines</a></li>
+                <li><a class="dropdown-item" href="/southeast-asia/singapore">Singapore</a></li>
+                <li><a class="dropdown-item" href="/southeast-asia/thailand">Thailand</a></li>
+                <li><a class="dropdown-item" href="/southeast-asia/malaysia">Malaysia</a></li>
+              </ul>
+            </li>
+
+            <!-- Europe -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="/europe">Europe</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/europe/france">France</a></li>
+                <li><a class="dropdown-item" href="/europe/italy">Italy</a></li>
+                <li><a class="dropdown-item" href="/europe/greece">Greece</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/travel-guides/">Explorer's Guide</a></li>
+        <li class="nav-item"><a class="nav-link" href="/blogs/">Travel Blogs</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

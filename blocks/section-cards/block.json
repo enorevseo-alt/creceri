@@ -1,0 +1,36 @@
+{
+  "apiVersion": 3,
+  "name": "child/section-cards",
+  "title": "Section · Cards",
+  "category": "widgets",
+  "description": "Reusable section: heading + intro + N cards + optional CTA.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title":   { "type": "string",  "default": "" },
+    "intro":   { "type": "string",  "default": "" },
+    "ctaText": { "type": "string",  "default": "" },
+    "ctaUrl":  { "type": "string",  "default": "" },
+
+    "items":   { "type": "array",   "default": [] },
+
+    "variant": { "type": "string",  "default": "plain" },           
+    "cols":    { "type": "object",  "default": { "xs":1,"sm":2,"lg":4 } },
+    "cardLinkBehavior": { "type": "string", "default": "stretched" },
+
+    "showReadLink": { "type": "boolean", "default": false },
+    "readLinkText": { "type": "string",  "default": "Read more" }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css",
+  "_notes": {
+    "later_add": {
+      "editorScript": "file:./block.js",
+      "editorStyle":  "file:./editor.css"
+    }
+  } 
+}
