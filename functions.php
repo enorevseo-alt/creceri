@@ -67,7 +67,6 @@ add_action('wp_enqueue_scripts', function () {
   $add_script('ai-main', '/assets/js/main.js', ['bootstrap'], true);
 });
 
-
 /* -------------------  Disable editor on “home” (optional)  ------------------- */
 function ai_disable_editor_on_home($can_edit, $post) {
   if (is_admin() && $post && $post->post_name === 'home') return false;
@@ -78,14 +77,9 @@ add_filter('use_block_editor_for_post', 'ai_disable_editor_on_home', 10, 2);
 
 /* -----------------------  Custom blocks  ----------------------- */
 add_action('init', function () {
-  register_block_type_from_metadata(__DIR__ . '/blocks/section-cards');
-  register_block_type_from_metadata(__DIR__ . '/blocks/section-split-features');
-  // If archive-grid has block.json, use the metadata version too:
-  if (file_exists(__DIR__ . '/blocks/archive-grid/block.json')) {
-    register_block_type_from_metadata(__DIR__ . '/blocks/archive-grid');
-  } else {
-    register_block_type(__DIR__ . '/blocks/archive-grid'); // fallback
-  }
+  register_block_type_from_metadata(__DIR__ . '/blocks/hero-banner');
+  register_block_type_from_metadata(__DIR__ . '/blocks/carousel');
+  register_block_type_from_metadata(__DIR__ . '/blocks/carousel-infinite');
 });
 
 
@@ -141,6 +135,9 @@ add_action('wp_footer', function () {
     })();
   </script>
 <?php });
+
+// Render Gutenberg blocks inside excerpts (so SSR blocks appear).
+add_filter( 'the_excerpt', 'do_blocks', 9 );
 
 /* -----------------------  Block bots (front-end)  ----------------------- */
 add_action('send_headers', function () {

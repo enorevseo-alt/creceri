@@ -1,0 +1,14 @@
+/* Editor-only hints & a horizontal look so authors get the idea */
+.ci-carousel.is-editor .ci-track {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(240px, 1fr);
+	gap: var(--ci-gap, 24px);
+	overflow-x: auto;
+	padding: 8px 0 2px;
+}
+.ci-carousel .ci-hint {
+	margin-top: .5rem;
+	font-size: 12px;
+	opacity: .7;
+}

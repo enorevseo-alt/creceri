@@ -1,4 +1,4 @@
-:root { --nav-h: 65px; } 
+:root { --nav-h: 40px; } 
 
 /* --- Hero container --- */
 .wp-block-group {
@@ -72,15 +72,12 @@
   box-shadow:0 0 0 4px rgba(220,53,69,.15);
 }
 
-/* --- layout tuning for hero copy --- */
-
 /* bring content closer to the left edge on wide screens */
 /* make the hero container span the full viewport width */
 .hero-landing .container{
   max-width: 100%;
-  /* tighter left padding, normal right padding */
-  padding-left: clamp(.75rem, 8vw, 12rem);
-  padding-right: clamp(1rem, 4vw, 3rem);
+  padding-left:  var(--page-gutter-left);
+  padding-right: var(--page-gutter-right);
 }
 
 /* remove default column gutters so content hugs the left nicely */
@@ -88,7 +85,7 @@
 
 /* keep the text block anchored left (not too wide) */
 .hero-landing .hero-copy{
-  max-width: 52rem;   /* ~832px, tweak to taste */
+  max-width: 52rem;  
   margin-left: 0;
   text-align: left;
 }

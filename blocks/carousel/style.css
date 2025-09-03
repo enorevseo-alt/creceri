@@ -1,0 +1,156 @@
+/* =========================
+   Carousel block
+========================= */
+.carousel-block {
+  /* Subscribe to theme.json H2 for section title */
+  --cr-title-size: var(--wp--preset--font-size--h-2);
+
+  max-width: 100%;
+  padding-left: var(--page-gutter-left, 1rem);
+  padding-right: var(--page-gutter-right, 1.5rem);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  position: relative;
+}
+.carousel-block.has-bg { padding-top: 2rem; padding-bottom: 2.25rem; }
+
+.carousel-head { text-align: center; margin-bottom: 0.75rem; }
+.carousel-title { font-weight: 800; font-size: var(--cr-title-size); margin: 0 0 0.35rem; }
+.carousel-intro { color: #666; margin: 0 0 1rem; font-size: var(--wp--preset--font-size--body); }
+
+/* Card text sizes inherit from presets */
+.card-title { font-size: var(--wp--preset--font-size--h-3); line-height: 1.4; }
+.card-text  { font-size: var(--wp--preset--font-size--body); line-height: 1.6; }
+
+/* Meta (intentionally smaller than body) */
+.card-meta { color: #666; font-size: clamp(0.875rem, 0.82rem + 0.3vw, 1rem); }
+.card-meta .meta-line { line-height: 1.25rem; }
+
+/* If markup still uses .h6 / .small, neutralize inside this component */
+.carousel-block .h6   { font-size: inherit; line-height: inherit; }
+.carousel-block .small{ font-size: inherit; }
+
+/* =========================
+  Cards
+========================= */
+.generic-card {
+  border: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+}
+.generic-card .card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.generic-card .badge {
+  font-weight: 600;
+  border: 1px solid #eee;
+}
+.generic-card .btn.btn-danger.btn-sm {
+  border-radius: 999px;
+  padding-inline: 1rem;
+  font-weight: 700;
+}
+
+/* Meta block */
+.generic-card .card-meta .meta-line { line-height: 1.25rem; }
+
+/* Image-only tiles (gallery style) */
+.generic-card.image-only {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.generic-card.image-only .card-media {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.generic-card.has-body{
+  display: flex;
+  flex-direction: column;
+  height: 100%;                
+}
+.generic-card.has-body .card-body{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;              
+}
+.generic-card.has-body .card-media{ flex: 0 0 auto; }
+.generic-card.has-body .btn.btn-danger.btn-sm {
+  margin-top: auto;          
+  align-self: flex-start;   
+}
+.generic-card .btn { position: relative; z-index: 2; }
+.generic-grid { padding-bottom: 0; }
+.generic-grid > .row { justify-content: center; }
+
+/* Caption under image tiles */
+.tile-caption { text-align: left; } /* change to center if preferred */
+
+/* slight gap between image and caption */
+.carousel-inner .row > .col { margin-bottom: 0.25rem; }
+.carousel-inner .row.justify-content-center { justify-content: center; }
+
+/* =========================
+  Carousel chrome (controls + indicators)
+========================= */
+.carousel-block,
+.generic-carousel {
+  overflow: visible; /* let arrows & dots render outside */
+  position: relative; /* anchor absolutely-positioned children */
+}
+
+/* extra space for dots under the carousel */
+.generic-carousel { padding-bottom: 2rem; }
+
+.generic-carousel .carousel-control-prev,
+.generic-carousel .carousel-control-next {
+  width: auto; /* don't span 50% */
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1; /* always visible */
+  z-index: 5; /* above cards */
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+.generic-carousel .carousel-control-prev { left: -68px; } /* push outside */
+.generic-carousel .carousel-control-next { right: -68px; } /* push outside */
+
+.generic-carousel .carousel-control-prev-icon,
+.generic-carousel .carousel-control-next-icon {
+  width: 44px;
+  height: 44px;
+  background-size: 60% 60%;
+  background-color: #000; /* black pill */
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+.generic-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.generic-carousel .carousel-control-next:hover .carousel-control-next-icon,
+.generic-carousel .carousel-control-prev:focus .carousel-control-prev-icon,
+.generic-carousel .carousel-control-next:focus .carousel-control-next-icon {
+  background-color: #111;
+}
+
+/* Indicators (dots) */
+.generic-carousel .carousel-indicators {
+  bottom: -3rem;
+  z-index: 4;
+}
+.generic-carousel .carousel-indicators [data-bs-target] {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.35;
+}
+.generic-carousel .carousel-indicators .active { opacity: 1; }
+
+/* =========================
+   Small-screen tweaks
+========================= */
+@media (max-width: 575.98px) {
+  .generic-carousel .carousel-control-prev { left: -18px; }
+  .generic-carousel .carousel-control-next { right: -18px; }
+}

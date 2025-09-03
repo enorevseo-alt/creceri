@@ -97,3 +97,133 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+(function () {
+  function debounce(fn, delay) {
+    let t;
+    return function () {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, arguments), delay);
+    };
+  }
+
+  function bpCols(el) {
+    // Read per-breakpoint counts from data attributes
+    const xs = parseInt(el.getAttribute('data-cols-xs')) || 1;
+    const sm = parseInt(el.getAttribute('data-cols-sm')) || xs;
+    const lg = parseInt(el.getAttribute('data-cols-lg')) || sm;
+    const xl = parseInt(el.getAttribute('data-cols-xl')) || lg;
+
+    // Bootstrap 5 breakpoints
+    const w = window.innerWidth;
+    // <576 xs, 576–991 sm, 992–1199 lg, ≥1200 xl
+    if (w >= 1200)
+      return {
+        perSlide: xl,
+        rowColsClass: `row row-cols-${xs} row-cols-sm-${sm} row-cols-lg-${lg} row-cols-xl-${xl} g-3 g-md-4`,
+      };
+    if (w >= 992)
+      return {
+        perSlide: lg,
+        rowColsClass: `row row-cols-${xs} row-cols-sm-${sm} row-cols-lg-${lg} g-3 g-md-4`,
+      };
+    if (w >= 576)
+      return {
+        perSlide: sm,
+        rowColsClass: `row row-cols-${xs} row-cols-sm-${sm} g-3 g-md-4`,
+      };
+    return { perSlide: xs, rowColsClass: `row row-cols-${xs} g-3 g-md-4` };
+  }
+
+  function chunk(arr, n) {
+    const out = [];
+    for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+    return out;
+  }
+
+  function rebuildCarousel(root) {
+    // Dispose existing BS instance to avoid stale state
+    const inst = bootstrap.Carousel.getInstance(root);
+    if (inst) inst.dispose();
+
+    const inner = root.querySelector('.carousel-inner');
+    const indicators = root.parentElement.querySelector('.carousel-indicators');
+
+    // Collect ALL card columns currently present (across any slides)
+    const cols = inner.querySelectorAll('.col');
+    if (!cols.length) return;
+
+    const cards = Array.from(cols).map((col) => col.innerHTML);
+
+    // Determine perSlide for current breakpoint
+    const { perSlide, rowColsClass } = bpCols(root);
+
+    // Build new slides
+    const slides = chunk(cards, Math.max(1, perSlide));
+
+    // Rebuild indicators
+    if (indicators) {
+      indicators.innerHTML = '';
+      if (slides.length > 1) {
+        slides.forEach((_, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('data-bs-target', '#' + root.id);
+          btn.setAttribute('data-bs-slide-to', String(i));
+          btn.setAttribute('aria-label', `Slide ${i + 1}`);
+          if (i === 0) {
+            btn.className = 'active';
+            btn.setAttribute('aria-current', 'true');
+          }
+          indicators.appendChild(btn);
+        });
+      }
+    }
+
+    // Rebuild inner
+    inner.innerHTML = '';
+    slides.forEach((group, sIdx) => {
+      const item = document.createElement('div');
+      item.className = 'carousel-item' + (sIdx === 0 ? ' active' : '');
+
+      const row = document.createElement('div');
+      row.className = rowColsClass;
+
+      group.forEach((html) => {
+        const col = document.createElement('div');
+        col.className = 'col';
+        col.innerHTML = html;
+        row.appendChild(col);
+      });
+
+      item.appendChild(row);
+      inner.appendChild(item);
+    });
+
+    // Hide controls/indicators if only one slide
+    const controlsPrev = root.querySelector('.carousel-control-prev');
+    const controlsNext = root.querySelector('.carousel-control-next');
+    const multi = slides.length > 1;
+    if (controlsPrev) controlsPrev.style.display = multi ? '' : 'none';
+    if (controlsNext) controlsNext.style.display = multi ? '' : 'none';
+    if (indicators) indicators.style.display = multi ? '' : 'none';
+
+    // Re-init Bootstrap carousel (it will also honor your data attributes)
+    new bootstrap.Carousel(root);
+  }
+
+  function initAll() {
+    document
+      .querySelectorAll('.carousel.generic-carousel')
+      .forEach(rebuildCarousel);
+  }
+
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  // Rebuild on resize (debounced)
+  window.addEventListener('resize', debounce(initAll, 150));
+})();

@@ -1,0 +1,25 @@
+{
+  "apiVersion": 3,
+  "name": "childtheme/carousel-infinite",
+  "title": "Carousel – Infinite (Marquee Cards)",
+  "category": "design",
+  "icon": "images-alt2",
+  "description": "Continuously moving cards with background images and text at the bottom-left.",
+  "supports": {
+    "align": ["full", "wide"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "paragraph": { "type": "string", "default": "" },
+    "items": { "type": "array", "default": [] },
+    "speed": { "type": "number", "default": 30 },
+    "cardWidth": { "type": "number", "default": 260 },
+    "cardHeight": { "type": "number", "default": 160 },
+    "gap": { "type": "number", "default": 16 }
+  },
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./block.js"
+}

@@ -1,0 +1,42 @@
+{
+  "apiVersion": 3,
+  "name": "child/hero-landing",
+  "title": "Hero – Landing (BG Carousel + Search)",
+  "category": "design",
+  "icon": "slides",
+  "description": "Full-bleed hero with background slideshow, heading, lead, and blog search.",
+  "keywords": ["hero", "carousel", "search", "landing"],
+  "supports": {
+    "align": ["full"],
+    "anchor": true,
+    "spacing": { "padding": true, "margin": false }
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "lead": { "type": "string", "default": "" },
+
+    "slides": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "alt": { "type": "string" }
+        }
+      }
+    },
+
+    "autoplay": { "type": "boolean", "default": true },
+    "interval": { "type": "number", "default": 2000 },
+    "pauseOnHover": { "type": "boolean", "default": false },
+    "touch": { "type": "boolean", "default": true },
+    "fade": { "type": "boolean", "default": true },
+
+    "searchAction": { "type": "string", "default": "/blogs/" },
+    "searchPlaceholder": { "type": "string", "default": "Search Blogs" }
+  },
+
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

@@ -4,51 +4,305 @@
 <main class="wp-block-group alignfull">
 
   <!-- wp:html -->
-  <section class="hero-landing" aria-label="Homepage hero">
-    <!-- Background carousel (BS5) -->
-    <div id="heroBg" class="carousel slide carousel-fade"
-        data-bs-ride="carousel" data-bs-interval="2000" data-bs-pause="false" data-bs-touch="true" aria-hidden="true">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="hero-bg" src="/wp-content/themes/twenty-twenty-five-child/assets/images/Banner1.png" alt="">
-        </div>
-        <div class="carousel-item">
-          <img class="hero-bg" src="/wp-content/themes/twenty-twenty-five-child/assets/images/Banner2.png" alt="">
-        </div>
-        <div class="carousel-item">
-          <img class="hero-bg" src="/wp-content/themes/twenty-twenty-five-child/assets/images/Banner3.png" alt="">
-        </div>
-      </div>
-    </div>
-
-    <!-- Foreground content -->
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-7">
-          <div class="hero-copy">
-            <h1 class="hero-title">
-              Where Stories Travel: Real Journeys<br class="d-none d-md-inline">
-              Through Southeast Asia and Europe
-            </h1>
-            <p class="hero-lead">
-              Travel is more than movement. It’s connection, perspective, and discovery. Find travel stories from real
-              journeys across Southeast Asia and Europe—reflections, cultural discoveries, destination insights, and tips
-              that make travel meaningful.
-            </p>
-
-            <!-- Search input only (submit with Enter) -->
-            <form class="hero-search" action="/blogs/" method="get" role="search" aria-label="Search blogs">
-              <label for="hero-search-input" class="visually-hidden">Search blogs</label>
-              <span class="search-icon" aria-hidden="true">🔍</span>
-              <input id="hero-search-input" type="search" name="s" placeholder="Search Blogs">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- /wp:html -->
+  <!-- wp:child/hero-landing {
+    "title":"Where Stories Travel: Real Journeys\nThrough Southeast Asia and Europe",
+    "lead":"Travel is more than movement. It’s connection, perspective, and discovery. Find travel stories from real journeys across Southeast Asia and Europe—reflections, cultural discoveries, destination insights, and tips that make travel meaningful.",
+    "slides":[
+      {"url":"/wp-content/themes/twenty-twenty-five-child/assets/images/hero-banner/beach.png","alt":"Tropical beach"},
+      {"url":"/wp-content/themes/twenty-twenty-five-child/assets/images/hero-banner/island.jpg","alt":"Island"},
+      {"url":"/wp-content/themes/twenty-twenty-five-child/assets/images/hero-banner/mountains.png","alt":"Mountains"}
+    ],
+    "autoplay":true,
+    "interval":2000,
+    "pauseOnHover":false,
+    "touch":true,
+    "fade":true,
+    "searchAction":"/blogs/",
+    "searchPlaceholder":"Search Blogs"
+  } /-->
+
+  <!-- wp:childtheme/carousel-infinite {
+    "title": "10 Must-See Cities That Capture Europe’s Magic",
+    "paragraph": "With dozens of incredible countries and thousands of unique cities, it’s tough to narrow down where to go. But if you’re starting to plan your Europe tour, here are ten spots you shouldn’t skip:",
+    "speed": 28,
+    "cardWidth": 300,
+    "cardHeight": 180,
+    "gap": 20,
+    "items": [
+      {
+        "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/paris.jpg",
+        "title": "Paris, France",
+        "text": "Iconic landmarks like the Eiffel Tower, world-class art, and charming cafés.",
+        "alt": "Paris skyline with Eiffel Tower"
+      },
+      {
+        "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/rome.jpg",
+        "title": "Rome, Italy",
+        "text": "Ancient ruins, vibrant piazzas, and authentic Italian cuisine."
+      },
+      {
+        "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/barcelona.jpg",
+        "title": "Barcelona, Spain",
+        "text": "Gaudí’s architecture, beach vibes, and a lively tapas scene."
+      },
+      {
+        "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/amsterdam.jpg",
+        "title": "Amsterdam, Netherlands",
+        "text": "Scenic canals, bikes everywhere, and a laid-back atmosphere."
+      },
+      {
+        "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/greece.jpg",
+        "title": "Santorini, Greece",
+        "text": "Cliffside villages, stunning sunsets, and blue-domed churches."
+      },
+      {
+        "img": "https://uceap.universityofcalifornia.edu/sites/default/files/2019-08/business-and-entrepreneurship-in-london-M2.jpg",
+        "title": "London, United Kingdom",
+        "text": "From the historic Tower of London and Buckingham Palace to the world-class museums and vibrant West End theatre scene, London is a hub of culture and history."
+      },
+      {
+        "img": "https://uceap.universityofcalifornia.edu/sites/default/files/2020-09/summer-internship-prague-m2.jpg",
+        "title": "Prague, Czech Republic",
+        "text": "This city feels like a fairy tale brought to life, with its medieval Old Town Square, the stunning Charles Bridge, and the impressive Prague Castle."
+      },
+      {
+        "img": "https://www.newmarketholidays.co.uk/media/fzvlyuy4/s%C3%A3o-jorge-castle-lisbon-portugal.jpg?format=webp&v=1dac3c487861a50",
+        "title": "Lisbon, Portugal",
+        "text": "A city of seven hills, Lisbon charms with its colorful tiled buildings, historic trams, delicious custard tarts (pastéis de nata), and breathtaking views over the Tagus River."
+      }
+    ]
+  } /-->
+
+
+  <!-- wp:child/carousel {
+    "title":"Southeast Asia to Europe:\nStart Your Journey to Unforgettable Places",
+    "intro":"Discover diverse cultures, landmarks, and landscapes that shape each unique journey.",
+    "backgroundType":"none",
+    "backgroundValue":"",
+    "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+    "cardLinkBehavior":"stretched",
+    "autoplay":false,
+    "interval":0,
+    "pauseOnHover":false,
+    "wrap":true,
+    "showControls":true,
+    "showIndicators":true,
+    "items":[
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/philippines.jpg",
+        "imageAlt":"Philippines",
+        "heading":"Philippines",
+        "text":"Sail through hidden lagoons, white-sand beaches, and more.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/philippines/"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/singapore.jpg",
+        "imageAlt":"Singapore",
+        "heading":"Singapore",
+        "text":"Futuristic skylines, gourmet dining, and seamless urban travel.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/singapore/"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/thailand.jpg",
+        "imageAlt":"Thailand",
+        "heading":"Thailand",
+        "text":"Timeless cities filled with art, fashion, and culinary masterpieces.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/thailand/"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/malaysia.jpg",
+        "imageAlt":"Malaysia",
+        "heading":"Malaysia",
+        "text":"Sunlit islands, ancient ruins, and cliffside villages.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/malaysia/"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/france.jpg",
+        "imageAlt":"France",
+        "heading":"France",
+        "text":"Sunlit islands, ancient ruins, and cliffside villages.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/france/"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/Italy.jpg",
+        "imageAlt":"Italy",
+        "heading":"Italy",
+        "text":"Timeless cities filled with art, fashion, and culinary masterpieces.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/italy/"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/southeast-to-europe/greece.jpg",
+        "imageAlt":"Greece",
+        "heading":"Greece",
+        "text":"Sunlit islands, ancient ruins, and cliffside villages.",
+        "buttonLabel":"Learn More",
+        "buttonURL":"/destinations/greece/"
+      }
+    ]
+  } /-->
+
+  <!-- wp:child/carousel {
+  "title":"Need-to-Know Info",
+  "intro":"Clear, helpful insights without the jargon. Learn about local customs, safety tips, visa rules, and what to expect before you even land. It's all about traveling smart, not stressed.",
+  "backgroundType":"gradient",
+  "backgroundValue":"linear-gradient(135deg,#1BA1E3,#7CC7F6)",
+  "cols": { "xs": 1, "sm": 2, "md": 3, "lg": 3,"xl":3},
+  "cardLinkBehavior":"stretched",
+  "autoplay":false,
+  "interval":0,
+  "pauseOnHover":false,
+  "wrap":true,
+  "showControls":true,
+  "showIndicators":true,
+  "items":[
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageAlt":"Blog Placeholder",
+      "heading":"Blog Title",
+      "text":"Blog description/excerpt",
+      "date":"June 15, 2025",
+      "buttonLabel":"Learn More",
+      "buttonURL":"#"
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageAlt":"Blog Placeholder",
+      "heading":"Blog Title",
+      "text":"Blog description/excerpt",
+      "date":"June 15, 2025",
+      "buttonLabel":"Learn More",
+      "buttonURL":"#"
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageAlt":"Blog Placeholder",
+      "heading":"Blog Title",
+      "text":"Blog description/excerpt",
+      "date":"June 15, 2025",
+      "buttonLabel":"Learn More",
+      "buttonURL":"#"
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageAlt":"Blog Placeholder",
+      "heading":"Blog Title",
+      "text":"Blog description/excerpt",
+      "date":"June 15, 2025",
+      "buttonLabel":"Learn More",
+      "buttonURL":"#"
+    }
+  ]
+} /-->
+
+<!-- wp:child/carousel {
+  "title":"Thailand",
+  "intro":"",
+  "backgroundType":"none",
+  "backgroundValue":"",
+  "cols": { "xs": 1, "sm": 2, "md": 3, "lg": 3,"xl":4},
+  "cardLinkBehavior":"stretched",
+  "autoplay":false,
+  "interval":0,
+  "pauseOnHover":false,
+  "wrap":true,
+  "showControls":true,
+  "showIndicators":true,
+  "items":[
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/bangkok.jpg",
+      "imageAlt":"Bangkok",
+      "heading":"Bangkok",
+      "imageOnly": true
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/chiang.jpg",
+      "imageAlt":"Chiang Mai",
+      "heading":"Chiang Mai",
+      "imageOnly": true
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/phuket.jpg",
+      "imageAlt":"Phuket",
+      "heading":"Phuket",
+      "imageOnly": true
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/samui.jpg",
+      "imageAlt":"Koh Samui",
+      "heading":"Koh Samui",
+      "imageOnly": true
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/krabi.jpg",
+      "imageAlt":"Krabi",
+      "heading":"Krabi",
+      "imageOnly": true
+    },
+    {
+      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/pattaya.jpg",
+      "imageAlt":"Pattaya",
+      "heading":"Pattaya",
+      "imageOnly": true
+    }
+  ]
+} /-->
+
+  <!-- wp:child/carousel {
+    "title":"Affordable Tour Packages That Pack In the Adventure",
+    "intro":"Exploring Southeast Asia doesn’t have to cost a fortune. Whether you’re joining a group tour or customizing your own route, there are plenty of budget options.",
+    "backgroundType":"none",
+    "backgroundValue":"",
+    "cols":{"xs":1,"sm":2,"md":3,"lg":3,"xl":5},
+    "cardLinkBehavior":"stretched",
+    "autoplay":false,
+    "wrap":true,
+    "showControls":false,
+    "showIndicators":false,
+    "items":[
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/thailand-island.jpg",
+        "imageAlt":"Thailand island tour",
+        "heading":"Thailand island tour (7 days)",
+        "meta":"from $350",
+        "buttonURL":"#"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/vietnam-cambodia.jpg",
+        "imageAlt":"Vietnam Cambodia combo",
+        "heading":"Vietnam & Cambodia combo (10 days)",
+        "meta":"from $700",
+        "buttonURL":"#"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/palawan.jpg",
+        "imageAlt":"Philippines Palawan package",
+        "heading":"Philippines Palawan package (5 days)",
+        "meta":"from $450",
+        "buttonURL":"#"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/bali-java.jpg",
+        "imageAlt":"Indonesia Bali & Java escape",
+        "heading":"Indonesia Bali & Java escape (8 days)",
+        "meta":"from $600",
+        "buttonURL":"#"
+      },
+      {
+        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/multi-country.jpg",
+        "imageAlt":"Multi-country backpacker pass",
+        "heading":"Multi-country backpacker pass (30 days)",
+        "meta":"from $1,400",
+        "buttonURL":"#"
+      }
+    ]
+  } /-->
 
 </main>
 <!-- /wp:group -->

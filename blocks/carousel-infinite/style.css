@@ -1,0 +1,186 @@
+.ci-head{
+  text-align:center;
+  padding-left: var(--page-gutter-left, 1rem);
+  padding-right: var(--page-gutter-right, 1rem);
+  margin-bottom: .5rem;
+}
+.ci-heading{
+  margin: 0 0 .35rem;
+  font-size: var(--wp--preset--font-size--h-2);
+  line-height: 1.25;
+  font-weight: 800;
+}
+.ci-summary{
+  margin: 0 0 1rem;
+  font-size: var(--wp--preset--font-size--body);
+  line-height: 1.6;
+  color: #666;
+}
+
+.ci-wrap{
+  --ci-card-w:260px;
+  --ci-card-h:160px;      
+  --ci-gap:16px;
+  --ci-speed:30s;
+  --ci-fade:64px;         
+
+  position:relative;
+  overflow:hidden;
+
+  transform: translateZ(0);
+  contain: paint;
+
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--ci-fade), #000 calc(100% - var(--ci-fade)), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 var(--ci-fade), #000 calc(100% - var(--ci-fade)), transparent 100%);
+}
+
+.ci-wrap .container-fluid{ padding:0 }
+
+.ci-track{
+  display:flex;
+  gap:var(--ci-gap);
+  padding:12px var(--ci-gap);
+  will-change:transform;
+  animation:none;
+}
+.ci-wrap.is-ready .ci-track{
+  animation: ci-scroll var(--ci-speed) linear infinite;
+}
+
+.ci-wrap:hover .ci-track{ animation-play-state: paused }
+.ci-wrap.is-paused .ci-track { animation-play-state: paused !important; }
+
+@keyframes ci-scroll{
+  from{ transform:translateX(0) }
+  to  { transform:translateX(calc(-1 * var(--ci-distance, 0px))) }
+}
+
+.ci-card{
+  height: clamp(180px, 50vw, 350px);
+  flex: 0 0 var(--ci-card-w);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+}
+
+.ci-img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;   
+  object-fit: cover;
+  display: block;
+}
+
+.ci-card::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,0) 100%);
+}
+
+.ci-label{
+  position:absolute; left:10px; bottom:10px; z-index:1;
+  color:#fff;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:saturate(120%) blur(2px);
+  padding:8px 10px; border-radius:10px;
+  max-width:85%;
+  cursor: default;
+}
+
+.ci-title{
+  margin:0;
+  font-size: var(--wp--preset--font-size--h-3);
+  line-height:1.25;
+  font-weight:700;
+}
+.ci-sub{
+  margin:.25rem 0 0;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  line-height:1.35;
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+  transition:opacity .2s ease, max-height .2s ease;
+}
+
+@media (hover: hover){
+  .ci-card:hover .ci-sub{ opacity:1; max-height:8em; }
+}
+
+.ci-card.is-open .ci-sub{ opacity:1; max-height:8em; }
+
+@media (hover: none){
+  .ci-card{ cursor: pointer }
+}
+
+@media (max-width: 768px){
+  .ci-card{
+    flex-basis:30vw;
+    height:55vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ci-track{ animation:none; transform:none }
+}
+/* Smooth transforms for cards */
+.ci-card{
+  will-change: transform, filter;
+  transform-origin: center center;
+  transition: transform .25s ease, box-shadow .25s ease, opacity .2s ease, filter .2s ease;
+}
+
+/* --- DESKTOP HOVER STATE --- */
+@media (hover: hover){
+  /* When the track is hovered, dim/blur all cards a bit */
+  .ci-track:hover .ci-card{
+    opacity:.65;
+  }
+  .ci-track:hover .ci-card .ci-img{
+    filter: blur(1.5px) brightness(.88);
+  }
+
+  /* ...except the one actually hovered */
+  .ci-track:hover .ci-card:hover{
+    transform: scale(1.06);
+    opacity:1;
+    z-index:3;                    /* sit above neighbors when scaled */
+    box-shadow: 0 10px 28px rgba(0,0,0,.2);
+  }
+  .ci-track:hover .ci-card:hover .ci-img{
+    filter:none;
+  }
+}
+
+/* --- CLICK/OPEN STATE (mobile + desktop) --- */
+/* When a card is opened (your JS toggles .is-open and .is-paused on wrap) */
+.ci-wrap.is-paused .ci-card{
+  opacity:.65;
+}
+.ci-wrap.is-paused .ci-card .ci-img{
+  filter: blur(1.5px) brightness(.88);
+}
+
+/* Focus the active (opened) card */
+.ci-card.is-open{
+  transform: scale(1.06);
+  z-index:3;
+  box-shadow: 0 10px 28px rgba(0,0,0,.2);
+  opacity:1;
+}
+.ci-card.is-open .ci-img{
+  filter:none;
+}
+
+/* Make sure labels/text never blur */
+.ci-card .ci-label{
+  filter:none !important;
+}
+
+/* Slightly smaller scale on narrow screens to avoid crowding */
+@media (max-width: 768px){
+  .ci-card.is-open{ transform: scale(1.04); }
+  .ci-track:hover .ci-card:hover{ transform: scale(1.04); }
+}
