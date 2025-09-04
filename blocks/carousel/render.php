@@ -47,8 +47,23 @@ $bgType  = $A['backgroundType'] ?? 'none';
 $bgValue = trim($A['backgroundValue'] ?? '');
 $bgStyle = ($bgType !== 'none' && $bgValue !== '') ? 'background:'.$bgValue.';' : '';
 
+/** Data inspection for overlay labels */
+$allImageOnly = !empty($items) && array_reduce($items, function($carry, $it){
+  return $carry && !empty($it['imageOnly']);
+}, true);
+
+// Country label comes from the block title (e.g., "Thailand")
+$countryLabel = $title !== '' ? $title : '';
+
+// Human-readable “type” label
+if ($isCarousel) {
+  $typeLabel = $allImageOnly ? 'Image Carousel' : 'Card Carousel';
+} else {
+  $typeLabel = $allImageOnly ? 'Image Grid' : 'Card Grid';
+}
+
 /** Helper to print one card */
-$print_card = function(array $card) use ($cardLinkBehavior) {
+$print_card = function(array $card) use ($cardLinkBehavior, $countryLabel, $typeLabel) {
   $img   = esc_url($card['imageURL'] ?? '');
   $alt   = esc_attr($card['imageAlt'] ?? '');
   $h     = trim($card['heading'] ?? '');
@@ -67,6 +82,28 @@ $print_card = function(array $card) use ($cardLinkBehavior) {
       <?php if ($img): ?>
         <div class="ratio card-media" style="--bs-aspect-ratio: <?php echo esc_attr($ratio); ?>;">
           <img src="<?php echo $img; ?>" alt="<?php echo $alt; ?>" class="card-img-top object-cover">
+          <?php if ($isImageOnly): ?>
+            <!-- Overlay with arced badge + centered title -->
+            <?php $arc_id = 'arc-'.uniqid(); ?>
+            <div class="tile-overlay">
+              <?php if ($countryLabel || $typeLabel): ?>
+                <svg class="tile-arc" viewBox="0 0 100 50" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                  <defs>
+                    <path id="<?php echo esc_attr($arc_id); ?>" d="M5,30 H95" />
+                  </defs>
+                  <text class="tile-arc-text">
+                    <textPath href="#<?php echo esc_attr($arc_id); ?>" startOffset="50%" text-anchor="middle">
+                      <?php
+                        $parts = array_filter([$card['imageAlt']]);
+                        echo esc_html(strtoupper(implode(' • ', $parts)));
+                      ?>
+                    </textPath>
+                  </text>
+                </svg>
+              <?php endif; ?>
+
+            </div>
+          <?php endif; ?>
         </div>
       <?php endif; ?>
 
@@ -103,11 +140,8 @@ $print_card = function(array $card) use ($cardLinkBehavior) {
     </article>
 
     <?php if ($isImageOnly): ?>
-      <?php if ($h !== ''): ?>
-        <div class="tile-caption h6 fw-semibold mt-2 mb-0"><?php echo esc_html($h); ?></div>
-      <?php endif; ?>
       <?php if ($url && $cardLinkBehavior === 'button-only'): ?>
-        <div class="tile-actions mt-2">
+        <div class="tile-actions mt-2 text-center">
           <a class="btn btn-danger btn-sm" href="<?php echo $url; ?>"><?php echo esc_html($buttonText); ?></a>
         </div>
       <?php endif; ?>
@@ -115,6 +149,7 @@ $print_card = function(array $card) use ($cardLinkBehavior) {
   </div>
   <?php
 };
+
 
 /** Render */
 ?>

@@ -1,0 +1,99 @@
+/* wrapper sets the defaults via CSS variables; render.php can override */
+.activities-gallery {
+  --ta-aspect: 16/9;
+  --ta-aspect-wide: 21/9;
+  --ta-aspect-mobile: 16/9;
+  --cr-title-size: var(--wp--preset--font-size--h-2);
+  max-width: 100%;
+  padding-left: var(--page-gutter-left, 1rem);
+  padding-right: var(--page-gutter-right, 1.5rem);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Card with image + caption overlay */
+.activities-gallery .ta-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: var(--ta-aspect);
+  background: #f2f2f2;
+}
+
+.activities-gallery .ta-card.ta-wide {
+  aspect-ratio: var(--ta-aspect-wide);
+}
+
+/* rest of your rules unchanged… */
+.activities-gallery .ta-card img,
+.activities-gallery .ta-card .ta-placeholder { 
+  width:100%;
+  height:100%;
+  object-fit:cover; 
+  object-position: var(--ta-object-pos, center center);
+  display:block; 
+}
+
+.activities-gallery .ta-card::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0) 60%);
+  z-index:0;
+}
+
+.activities-gallery .ta-overlay { 
+  position:absolute; 
+  left:0; 
+  right:0; 
+  bottom:0;
+  padding:.75rem 1rem;
+  color:#fff;
+  z-index:1;
+}
+
+.activities-gallery .ta-title { 
+  font-weight:700; 
+  line-height:1.5; 
+  font-size: var(--wp--preset--font-size--body, 1rem); 
+}
+
+.activities-gallery .ta-subtitle { 
+  opacity:.9;
+  font-size:.9rem; 
+  line-height:1.3; 
+}
+.activities-gallery .carousel .ta-card { 
+  border-radius:10px; 
+}
+.activities-gallery .carousel-indicators {
+  bottom: -32px;
+}
+.activities-gallery .carousel-indicators [data-bs-target]{
+  width:.75rem; 
+  height:.75rem; 
+  border-radius:50%; 
+  background-color: gray;
+}
+.activities-gallery .row.g-3 > [class*="col-"] { display:flex; }
+.activities-gallery .row.g-3 > [class*="col-"] > .ta-card { width:100%; }
+
+/* ≥1300px — large screens */
+@media (min-width: 1300px) {
+  .activities-gallery {
+    --ta-aspect: 4/1 !important;
+    --ta-aspect-wide: 8/1 !important;
+  }
+}
+
+/* 768–1299.98px — tablet & small desktops */
+@media (min-width: 768px) and (max-width: 1299.98px) {
+  .activities-gallery {
+    --ta-aspect: 8/4 !important;
+    --ta-aspect-wide: 7/2 !important;
+  }
+}
+
+/* <768px — mobile (carousel) */
+@media (max-width: 767.98px) {
+  .activities-gallery .ta-card { aspect-ratio: var(--ta-aspect-mobile, 16/9); }
+  .activities-gallery .ta-card.ta-wide { aspect-ratio: var(--ta-aspect-mobile, 16/9); }
+}

@@ -80,6 +80,7 @@ add_action('init', function () {
   register_block_type_from_metadata(__DIR__ . '/blocks/hero-banner');
   register_block_type_from_metadata(__DIR__ . '/blocks/carousel');
   register_block_type_from_metadata(__DIR__ . '/blocks/carousel-infinite');
+  register_block_type_from_metadata(__DIR__ . '/blocks/activities-gallery');
 });
 
 

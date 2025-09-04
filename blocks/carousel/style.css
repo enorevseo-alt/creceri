@@ -2,9 +2,7 @@
    Carousel block
 ========================= */
 .carousel-block {
-  /* Subscribe to theme.json H2 for section title */
   --cr-title-size: var(--wp--preset--font-size--h-2);
-
   max-width: 100%;
   padding-left: var(--page-gutter-left, 1rem);
   padding-right: var(--page-gutter-right, 1.5rem);
@@ -64,23 +62,31 @@
   box-shadow: none;
 }
 .generic-card.image-only .card-media {
+  position: relative;             /* needed for overlay layers */
   border-radius: 0.75rem;
   overflow: hidden;
 }
+
+/* Slightly darken the image for contrast with white text */
+.generic-card.image-only .card-media img {
+  filter: brightness(.88);
+  transform: translateZ(0);
+}
+
 .generic-card.has-body{
   display: flex;
   flex-direction: column;
-  height: 100%;                
+  height: 100%;
 }
 .generic-card.has-body .card-body{
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;              
+  flex: 1 1 auto;
 }
 .generic-card.has-body .card-media{ flex: 0 0 auto; }
 .generic-card.has-body .btn.btn-danger.btn-sm {
-  margin-top: auto;          
-  align-self: flex-start;   
+  margin-top: auto;
+  align-self: flex-start;
 }
 .generic-card .btn { position: relative; z-index: 2; }
 .generic-grid { padding-bottom: 0; }
@@ -101,28 +107,26 @@
   overflow: visible; /* let arrows & dots render outside */
   position: relative; /* anchor absolutely-positioned children */
 }
-
-/* extra space for dots under the carousel */
 .generic-carousel { padding-bottom: 2rem; }
 
 .generic-carousel .carousel-control-prev,
 .generic-carousel .carousel-control-next {
-  width: auto; /* don't span 50% */
+  width: auto;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 1; /* always visible */
-  z-index: 5; /* above cards */
+  opacity: 1;
+  z-index: 5;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }
-.generic-carousel .carousel-control-prev { left: -68px; } /* push outside */
-.generic-carousel .carousel-control-next { right: -68px; } /* push outside */
+.generic-carousel .carousel-control-prev { left: -68px; }
+.generic-carousel .carousel-control-next { right: -68px; }
 
 .generic-carousel .carousel-control-prev-icon,
 .generic-carousel .carousel-control-next-icon {
   width: 44px;
   height: 44px;
   background-size: 60% 60%;
-  background-color: #000; /* black pill */
+  background-color: #000;
   border-radius: 999px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
@@ -153,4 +157,66 @@
 @media (max-width: 575.98px) {
   .generic-carousel .carousel-control-prev { left: -18px; }
   .generic-carousel .carousel-control-next { right: -18px; }
+}
+
+/* =========================
+   Centered overlay on image-only tiles
+   (scrim sits UNDER text; text stays bright)
+========================= */
+.generic-card.image-only .card-media::after{
+  content:"";
+  position:absolute; inset:0;
+  z-index: 1;                /* scrim below text */
+  pointer-events: none;
+}
+
+.tile-overlay{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  text-align:center;
+  padding: 0.75rem 1rem;
+  color:#fff;
+  z-index: 2;                /* text above scrim */
+  pointer-events: none;
+}
+
+/* Curved badge across the top */
+.tile-arc{
+  position:absolute;
+  bottom: 10;
+  left: 0; right: 0;
+  height: 60%;
+  width: 100%;
+  pointer-events: none;
+}
+.tile-arc-text{
+  fill:#fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(0.62rem, 0.5rem + 0.6vw, 0.9rem);
+  paint-order: stroke;
+  stroke: rgba(0,0,0,.35);
+  stroke-width: .75px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.5));
+}
+
+/* Center main title */
+.tile-title{
+  font-size: clamp(1.125rem, 1rem + 1.2vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color:#fff;
+  letter-spacing: .03em;        /* gentle tracking */
+  text-shadow:
+    0 3px 10px rgba(0,0,0,.70),
+    0 1px  2px rgba(0,0,0,.60);
+  -webkit-text-stroke: .35px rgba(0,0,0,.35);
+}
+
+/* Optional: subtle scale on hover/focus */
+@media (hover: hover){
+  .generic-card.image-only .card-media:hover .tile-title{
+    transform: translateY(-1px);
+    transition: transform .2s ease;
+  }
 }

@@ -156,12 +156,12 @@
 
 /* --- CLICK/OPEN STATE (mobile + desktop) --- */
 /* When a card is opened (your JS toggles .is-open and .is-paused on wrap) */
-.ci-wrap.is-paused .ci-card{
+/* .ci-wrap.is-paused .ci-card{
   opacity:.65;
 }
 .ci-wrap.is-paused .ci-card .ci-img{
   filter: blur(1.5px) brightness(.88);
-}
+} */
 
 /* Focus the active (opened) card */
 .ci-card.is-open{

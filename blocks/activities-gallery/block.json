@@ -1,0 +1,44 @@
+{
+  "apiVersion": 3,
+  "name": "child/activities-gallery",
+  "title": "Activities Grid / Carousel",
+  "category": "widgets",
+  "description": "Two-up image grid that becomes a swipeable carousel on small screens. If the total is odd, the last item spans full width. Supports plain, solid, or gradient backgrounds.",
+  "icon": "images-alt2",
+
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "spacing": { "margin": ["top", "bottom"], "padding": true }
+  },
+
+  "attributes": {
+    "title": { "type": "string", "default": "Top Activities Across the Region" },
+    "intro": { "type": "string", "default": "" },
+
+    "bgMode": {
+      "type": "string",
+      "enum": ["plain", "solid", "gradient"],
+      "default": "plain"
+    },
+    "bgColor": { "type": "string", "default": "" },
+    "imagePosition": { "type":"string", "default":"center center" },
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string" },
+          "heading": { "type": "string", "default": "" },
+          "subheading": { "type": "string", "default": "" },
+          "url": { "type": "string", "default": "" }
+        },
+        "required": ["image"]
+      }
+    }
+  },
+
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}
