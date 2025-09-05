@@ -1,0 +1,42 @@
+{
+  "apiVersion": 3,
+  "name": "child/col-text-cards",
+  "title": "Text + Cards (Flexible)",
+  "category": "widgets",
+  "icon": "columns",
+  "description": "Text column with flexible card layouts: single, stacked (2), grid (3+), or a flexible 4-slot layout mixing images and text. Mobile becomes a carousel when applicable.",
+  "keywords": ["cards", "features", "carousel"],
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "spacing": { "padding": true, "margin": true, "blockGap": true }
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "title" },
+    "paragraph":  { "type": "string", "default": "paragraph" },
+    "headline": { "type": "string", "default": "Know the Destination, Beyond the Headlines" },
+    "subhead":  { "type": "string", "default": "It’s more than just checking a weather forecast." },
+    "caption":  { "type": "string", "default": "" },
+
+    "alignTextCards": { "type": "string", "enum": ["left", "right"], "default": "left" },
+
+    "bgMode":         { "type": "string", "enum": ["plain", "solid", "gradient"], "default": "plain" },
+    "bgGradientDir":  { "type": "string", "default": "to bottom" },
+    "bgColor":        { "type": "string", "default": "#ffffff" },
+    "bgGradientFrom": { "type": "string", "default": "#ffffff" },
+    "bgGradientTo":   { "type": "string", "default": "#f2f2f2" },
+
+    "layoutMode": { "type": "string", "enum": ["auto","single","stacked2","grid3","flex3","flex4"], "default": "auto" },
+    "mixImageText": { "type": "boolean", "default": false },
+
+    "features": { "type": "array", "default": [] },
+    "cards":    { "type": "array", "default": [{ "title": "Research & Plan", "image": "", "url": "" }] },
+
+    "slots": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

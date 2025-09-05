@@ -20,10 +20,10 @@
     "typography": {
       "fluid": true,
       "fontSizes": [
-        { "slug": "body", "name": "Body", "size": "clamp(1.125rem, 1rem + 0.5vw, 1rem)" },   
-        { "slug": "h-3",  "name": "H3/H4", "size": "clamp(1.125rem, 1rem + 0.5vw, 1.25rem)" },  
-        { "slug": "h-2",  "name": "H2",    "size": "clamp(1.5rem, 1.15rem + 1.7vw, 2rem)" },    
-        { "slug": "h-1",  "name": "H1",    "size": "clamp(1.75rem, 1.3rem + 2vw, 2.25rem)" }    
+        { "slug": "body", "name": "Body", "size": "clamp(1rem, 0.875rem + 0.75vw, 1.25rem)" },
+        { "slug": "h-3",  "name": "H3/H4", "size": "clamp(1.125rem, 1rem + 0.5vw, 1.25rem)" },
+        { "slug": "h-2",  "name": "H2",    "size": "clamp(1.5rem, 1.15rem + 1.7vw, 2rem)" },
+        { "slug": "h-1",  "name": "H1",    "size": "clamp(1.75rem, 1.3rem + 2vw, 2.25rem)" }
       ]
     }
   },

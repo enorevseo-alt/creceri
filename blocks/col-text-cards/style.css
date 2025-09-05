@@ -1,0 +1,367 @@
+/* =========================
+   Gutters / Containers
+   ========================= */
+.tc-block {
+  padding-left: var(--page-gutter-left, 1rem);
+  padding-right: var(--page-gutter-right, 1.5rem);
+}
+.tc-block > .container {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* =========================
+   Row / Columns
+   ========================= */
+.tc-row {
+  --tc-gap: 2rem;
+  --tc-text-max: 560px;
+  --tc-cards-min: 420px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: var(--tc-gap);
+}
+
+.tc-col-text { justify-content: center; }
+
+.tc-col-text,
+.tc-col-cards {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 992px) {
+  .tc-col-text  { flex: 0 1 var(--tc-text-max); }
+  .tc-col-cards { flex: 1 1 0; min-width: var(--tc-cards-min); }
+}
+
+@media (max-width: 991.98px) {
+  .tc-row { display: block; }
+}
+
+/* =========================
+   Headings / Text
+   ========================= */
+.tc-headline { margin-bottom: .25rem; }
+.tc-subhead  { margin-bottom: .75rem; }
+
+/* =========================
+   Features
+   ========================= */
+.tc-features .tc-feature-icon { line-height: 1.75; margin-top: .15rem; }
+.tc-feature-body p { margin: 0; }
+.tc-feature-body p + p { margin-top: .25rem; }
+
+/* =========================
+   Cards
+   ========================= */
+.tc-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: .75rem;
+  background: #fff;
+}
+.tc-card-media { width: 100%; height: 100%; }
+.tc-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tc-card-ph {
+  background: repeating-linear-gradient(
+    45deg,
+    #eaeaea,
+    #eaeaea 10px,
+    #f5f5f5 10px,
+    #f5f5f5 20px
+  );
+}
+
+/* Optional media cap for cards column */
+.tc-col-cards .tc-card-media { max-height: 450px; }
+
+/* =========================
+   Desktop media heights by layout
+   ========================= */
+@media (min-width: 992px) {
+  .tc-layout-single  .tc-card-media { max-height: 420px; }
+  .tc-layout-stacked2 .tc-card-media { max-height: 220px; }
+  .tc-layout-grid3   .tc-card-media { max-height: 300px; }
+}
+
+/* =========================
+   Desktop card containers
+   ========================= */
+.tc-desktop { flex: 1 1 auto; }
+.tc-grid,
+.tc-stack2 { display: grid; gap: 1rem; }
+.tc-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (min-width: 1200px) {
+  .tc-col-text .tc-features { display: block; }     /* default UL flow */
+  .tc-col-text .tc-feature  { width: auto; }        /* let LIs size naturally */
+}
+
+/* =========================
+   Responsive tweaks (≤ 1199.98px)
+   ========================= */
+@media (max-width: 1199.98px) {
+  /* override the earlier grid with higher specificity */
+  .tc-layout-grid3 .tc-col-text .tc-features,
+  .tc-layout-stacked2 .tc-col-text .tc-features,
+  .tc-layout-single .tc-col-text .tc-features {
+    --col-gap: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;          /* center the rows */
+    gap: .75rem var(--col-gap);       /* row-gap / column-gap */
+    width: min(700px, 100%);          /* keep the block from spanning full width */
+    margin-inline: auto;              /* center the block itself */
+  }
+
+  .tc-layout-grid3 .tc-col-text .tc-feature,
+  .tc-layout-stacked2 .tc-col-text .tc-feature,
+  .tc-layout-single .tc-col-text .tc-feature {
+    flex: 0 1 calc((100% - var(--col-gap)) / 2);  
+    margin: 0;                                     
+  }
+
+  /* optional: keep text inside each feature left-aligned */
+  .tc-col-text .tc-feature .tc-feature-body { text-align: left; }
+
+}
+
+@media (max-width: 1176.98px) {
+  .tc-row { --tc-text-max: auto; }
+
+  .tc-headline { text-align: center; }
+
+  .tc-col-text {
+    align-items: center;
+  }
+
+  .tc-col-text .tc-features {
+    display: flex;                 
+    flex-wrap: wrap;
+  }
+
+  .tc-col-text .tc-feature {
+    flex: 0 1 calc((100% - 1.25rem) / 2); /* 2 per row */
+    margin: 0;                           
+  }
+}
+
+/* =========================
+   Carousel
+   ========================= */
+.tc-carousel { position: relative; }
+
+.tc-carousel .tc-radio {
+  position: absolute;
+  left: -9999px;
+}
+
+.tc-carousel .tc-slides {
+  position: relative;
+  min-height: clamp(220px, 52vw, 360px);
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  outline: 0;
+}
+
+.tc-carousel .tc-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.tc-carousel .tc-slide .tc-card { height: 100%; }
+.tc-carousel .tc-slide:first-child {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tc-dots .tc-dot {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 999px;
+  background: #cfcfcf;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
+  opacity: .6;
+}
+.tc-dots .tc-dot:hover { opacity: .9; }
+
+.tc-carousel .tc-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .45);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+.tc-carousel .tc-prev { left: 8px; }
+.tc-carousel .tc-next { right: 8px; }
+
+@media (min-width: 992px) {
+  .tc-carousel .tc-nav { display: none; }
+}
+
+/* =========================
+   Flexible 4-slot layout (flex4)
+   ========================= */
+.tc-layout-flex4 .tc-flex4,
+.tc-layout-flex3 .tc-flex3 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.tc-layout-flex3 .tc-flex3 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  align-items: stretch; 
+  /* height: auto; balik */
+}
+
+@media (min-width: 768px) {
+  .tc-layout-flex4 .tc-flex4,
+  .tc-layout-flex3 .tc-flex3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Tablet: exact 4 items → explicit 2x2 placement
+   Row1: (1) col1, (2) col2
+   Row2: (4) col1, (3) col2
+*/
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .tc-layout-flex4 .tc-flex4.tc-items-4 .tc-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .tc-layout-flex4 .tc-flex4.tc-items-4 .tc-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .tc-layout-flex4 .tc-flex4.tc-items-4 .tc-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .tc-layout-flex4 .tc-flex4.tc-items-4 .tc-item:nth-child(4) { grid-column: 1; grid-row: 2; }
+}
+
+@media (min-width: 1200px) {
+  .tc-layout-flex4 .tc-flex4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.tc-layout-flex4 .tc-item,
+.tc-layout-flex3 .tc-item { min-height: 100%; }
+
+/* Make inner containers fill the grid track height */
+.tc-layout-flex4 .tc-item,
+.tc-layout-flex3 .tc-item { display: flex; }
+.tc-layout-flex4 .tc-item > .tc-textbox,
+.tc-layout-flex3 .tc-item > .tc-textbox,
+.tc-layout-flex4 .tc-item > .tc-card,
+.tc-layout-flex3 .tc-item > .tc-card { width: 100%; height: 100%; }
+
+/* Image cards flex to let media fill height */
+.tc-layout-flex4 .tc-card,
+.tc-layout-flex3 .tc-card { display: flex; flex-direction: column; }
+.tc-layout-flex4 .tc-card-media,
+.tc-layout-flex3 .tc-card-media { flex: 1 1 auto; min-height: clamp(220px, 28vw, 320px); }
+
+/* Text container */
+.tc-layout-flex4 .tc-textbox {
+  background: #fff;
+  border-radius: .75rem;
+  padding: 1rem 1.25rem;
+  /* border: 1px solid rgba(0,0,0,.06); */
+}
+.tc-layout-flex4 .tc-text-title { font-weight: 600; }
+.tc-layout-flex4 .tc-text-subtitle { font-weight: 600; }
+.tc-layout-flex4 .tc-list { padding-left: 1.1rem; }
+.tc-layout-flex4 .tc-list li { font-size: var(--wp--preset--font-size--body); margin-bottom: .35rem; }
+
+/* Image card overlay */
+.tc-layout-flex4 .tc-card,
+.tc-layout-flex3 .tc-card { border-radius: .75rem; overflow: hidden; }
+.tc-layout-flex4 .tc-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.0) 60%);
+}
+
+
+.tc-layout-flex3 .tc-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.0) 60%);
+  height: 50%;
+}
+.tc-layout-flex4 .tc-ov-title,
+.tc-layout-flex3 .tc-ov-title { font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem); }
+.tc-layout-flex4 .tc-ov-caption,
+.tc-layout-flex3 .tc-ov-caption { line-height: 1.35; }
+
+/* Mobile: center text blocks; bullets centered as a block, but text left-aligned */
+@media (max-width: 767.98px) {
+  .tc-layout-flex4 .tc-item.type-text .tc-textbox,
+  .tc-layout-flex3 .tc-item.type-text .tc-textbox { text-align: center; }
+  .tc-layout-flex4 .tc-item.type-text .tc-list,
+  .tc-layout-flex3 .tc-item.type-text .tc-list { display: inline-block; text-align: left; margin-left: auto; margin-right: auto; }
+}
+
+/* =========================
+   Variant: Hero image + 2 text (tc-hero-2text)
+   Desktop: 3 columns [image spans 2 rows], then two text cards
+   Tablet: image full width on row 1; two text cards side-by-side on row 2
+   Mobile: stack
+   ========================= */
+/* Desktop >=1200px: 3 columns: 1.2fr 1fr 1fr; hero spans rows */
+@media (min-width: 1200px) {
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text,
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text {
+    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+  }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text .tc-item:nth-child(1),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text .tc-item:nth-child(1) { grid-column: 1; grid-row: 1 / span 2; }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text .tc-item:nth-child(2),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text .tc-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text .tc-item:nth-child(3),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text .tc-item:nth-child(3) { grid-column: 3; grid-row: 1; }
+  /* If a 4th slot exists, keep it below second column */
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text.tc-items-4 .tc-item:nth-child(4),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text.tc-items-4 .tc-item:nth-child(4) { grid-column: 2; grid-row: 2; }
+}
+
+/* Tablet: image full width on first row; two texts side-by-side below */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text,
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text .tc-item:nth-child(1),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text .tc-item:nth-child(1) { grid-column: 1 / -1; grid-row: 1; }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text .tc-item:nth-child(2),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text .tc-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text .tc-item:nth-child(3),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text .tc-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .tc-layout-flex4 .tc-flex4.tc-hero-2text.tc-items-4 .tc-item:nth-child(4),
+  .tc-layout-flex3 .tc-flex3.tc-hero-2text.tc-items-4 .tc-item:nth-child(4) { grid-column: 1 / -1; grid-row: 3; }
+}
