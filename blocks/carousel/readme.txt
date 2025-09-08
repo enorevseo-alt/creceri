@@ -17,7 +17,7 @@ This Carousel have a diffirent type of output depends of what data you give.
     "showIndicators":true,
     "items":[
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -25,7 +25,7 @@ This Carousel have a diffirent type of output depends of what data you give.
             "buttonURL":"/destinations/philippines/"
         },
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -33,7 +33,7 @@ This Carousel have a diffirent type of output depends of what data you give.
             "buttonURL":"/destinations/singapore/"
         },
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -41,7 +41,7 @@ This Carousel have a diffirent type of output depends of what data you give.
             "buttonURL":"/destinations/thailand/"
         },
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -49,7 +49,7 @@ This Carousel have a diffirent type of output depends of what data you give.
             "buttonURL":"/destinations/malaysia/"
         },
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -57,7 +57,7 @@ This Carousel have a diffirent type of output depends of what data you give.
             "buttonURL":"/destinations/france/"
         },
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -65,7 +65,7 @@ This Carousel have a diffirent type of output depends of what data you give.
             "buttonURL":"/destinations/italy/"
         },
         {
-            "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+            "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
             "imageAlt":"404",
             "heading":"title",
             "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -91,7 +91,7 @@ This Carousel have a diffirent type of output depends of what data you give.
   "showIndicators":true,
   "items":[
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
       "imageAlt":"Blog Placeholder",
       "heading":"Blog Title",
       "text":"Blog description/excerpt",
@@ -100,7 +100,7 @@ This Carousel have a diffirent type of output depends of what data you give.
       "buttonURL":"#"
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
       "imageAlt":"Blog Placeholder",
       "heading":"Blog Title",
       "text":"Blog description/excerpt",
@@ -109,7 +109,7 @@ This Carousel have a diffirent type of output depends of what data you give.
       "buttonURL":"#"
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
       "imageAlt":"Blog Placeholder",
       "heading":"Blog Title",
       "text":"Blog description/excerpt",
@@ -118,7 +118,7 @@ This Carousel have a diffirent type of output depends of what data you give.
       "buttonURL":"#"
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/404.png",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
       "imageAlt":"Blog Placeholder",
       "heading":"Blog Title",
       "text":"Blog description/excerpt",
@@ -145,37 +145,37 @@ This Carousel have a diffirent type of output depends of what data you give.
   "showIndicators":true,
   "items":[
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/bangkok.jpg",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/bangkok.jpg",
       "imageAlt":"Bangkok",
       "heading":"Bangkok",
       "imageOnly": true
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/chiang.jpg",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/chiang.jpg",
       "imageAlt":"Chiang Mai",
       "heading":"Chiang Mai",
       "imageOnly": true
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/phuket.jpg",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/phuket.jpg",
       "imageAlt":"Phuket",
       "heading":"Phuket",
       "imageOnly": true
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/samui.jpg",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/samui.jpg",
       "imageAlt":"Koh Samui",
       "heading":"Koh Samui",
       "imageOnly": true
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/krabi.jpg",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/krabi.jpg",
       "imageAlt":"Krabi",
       "heading":"Krabi",
       "imageOnly": true
     },
     {
-      "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/thailand/pattaya.jpg",
+      "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/pattaya.jpg",
       "imageAlt":"Pattaya",
       "heading":"Pattaya",
       "imageOnly": true
@@ -197,35 +197,35 @@ This Carousel have a diffirent type of output depends of what data you give.
     "showIndicators":false,
     "items":[
       {
-        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/thailand-island.jpg",
+        "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/thailand-island.jpg",
         "imageAlt":"Thailand island tour",
         "heading":"Thailand island tour (7 days)",
         "meta":"from $350",
         "buttonURL":"#"
       },
       {
-        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/vietnam-cambodia.jpg",
+        "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/vietnam-cambodia.jpg",
         "imageAlt":"Vietnam Cambodia combo",
         "heading":"Vietnam & Cambodia combo (10 days)",
         "meta":"from $700",
         "buttonURL":"#"
       },
       {
-        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/palawan.jpg",
+        "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/palawan.jpg",
         "imageAlt":"Philippines Palawan package",
         "heading":"Philippines Palawan package (5 days)",
         "meta":"from $450",
         "buttonURL":"#"
       },
       {
-        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/bali-java.jpg",
+        "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/bali-java.jpg",
         "imageAlt":"Indonesia Bali & Java escape",
         "heading":"Indonesia Bali & Java escape (8 days)",
         "meta":"from $600",
         "buttonURL":"#"
       },
       {
-        "imageURL":"/wp-content/themes/twenty-twenty-five-child/assets/images/affordable-tour-packages/multi-country.jpg",
+        "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/multi-country.jpg",
         "imageAlt":"Multi-country backpacker pass",
         "heading":"Multi-country backpacker pass (30 days)",
         "meta":"from $1,400",

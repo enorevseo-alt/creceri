@@ -10,28 +10,28 @@ This Carousel is infinite and have a hover affect and design already need to mai
 "gap": 20,
 "items": [
     {
-    "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/paris.jpg",
+    "img": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/paris.jpg",
     "title": "Paris, France",
     "text": "Iconic landmarks like the Eiffel Tower, world-class art, and charming cafés.",
     "alt": "Paris skyline with Eiffel Tower"
     },
     {
-    "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/rome.jpg",
+    "img": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/rome.jpg",
     "title": "Rome, Italy",
     "text": "Ancient ruins, vibrant piazzas, and authentic Italian cuisine."
     },
     {
-    "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/barcelona.jpg",
+    "img": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/barcelona.jpg",
     "title": "Barcelona, Spain",
     "text": "Gaudí’s architecture, beach vibes, and a lively tapas scene."
     },
     {
-    "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/amsterdam.jpg",
+    "img": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/amsterdam.jpg",
     "title": "Amsterdam, Netherlands",
     "text": "Scenic canals, bikes everywhere, and a laid-back atmosphere."
     },
     {
-    "img": "/wp-content/themes/twenty-twenty-five-child/assets/images/cities-europe/greece.jpg",
+    "img": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/greece.jpg",
     "title": "Santorini, Greece",
     "text": "Cliffside villages, stunning sunsets, and blue-domed churches."
     },
