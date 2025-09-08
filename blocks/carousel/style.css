@@ -13,7 +13,7 @@
 .carousel-block.has-bg { padding-top: 2rem; padding-bottom: 2.25rem; }
 
 .carousel-head { text-align: center; margin-bottom: 0.75rem; }
-.carousel-title { font-weight: 800; font-size: var(--cr-title-size); margin: 0 0 0.35rem; }
+.carousel-title { font-weight: 700; font-size: var(--wp--preset--font-size--h-2); margin: 0 0 0.35rem; white-space: pre-line;}
 .carousel-intro { color: #666; margin: 0 0 1rem; font-size: var(--wp--preset--font-size--body); }
 
 /* Card text sizes inherit from presets */
