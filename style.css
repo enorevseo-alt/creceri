@@ -11,14 +11,14 @@ Tested up to: 6.8
 Requires PHP: 5.7
 */
 
-/* ========== Global ========== */
-html, body { overflow-x: hidden; }
-
 /* Gutters (layout spacers) */
 :root {
   --page-gutter-left:  clamp(0.75rem, 8vw, 12rem);
   --page-gutter-right: clamp(0.75rem, 8vw, 12rem);
 }
+
+/* ========== Global ========== */
+html, body { overflow-x: hidden; }
 
 main.wp-block-group { margin-top: 0; }
 

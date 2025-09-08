@@ -355,3 +355,292 @@ document.addEventListener('DOMContentLoaded', () => {
   window.TCCarousel = { initAll, init: initCarousel };
 })();
 
+
+
+// (function () {
+//   // Run fn when DOM is ready (handles defer/footers too)
+//   function onReady(fn) {
+//     if (document.readyState !== 'loading') fn();
+//     else document.addEventListener('DOMContentLoaded', fn, { once: true });
+//   }
+
+//   // Try to find #belt now; if not found, watch DOM until it appears
+//   function boot() {
+//     const existing = document.getElementById('belt');
+//     if (existing) return initBelt(existing);
+
+//     const mo = new MutationObserver(() => {
+//       const belt = document.getElementById('belt');
+//       if (belt) {
+//         mo.disconnect();
+//         initBelt(belt);
+//       }
+//     });
+//     mo.observe(document.documentElement, { childList: true, subtree: true });
+//   }
+
+//   onReady(boot);
+
+//   function initBelt(belt) {
+//     // prevent double-initialization
+//     if (belt.dataset.beltInit === '1') return;
+//     belt.dataset.beltInit = '1';
+
+//     // ---------- Settings ----------
+//     const DESK_DURATION = 800;   // desktop FLIP ms
+//     const DESK_INTERVAL = 2500;  // desktop FLIP interval
+
+//     const MOBILE_INTERVAL   = 3000; // delay between slides (ms)
+//     const MOBILE_SCROLL_MS  = 650;  // smooth scroll duration (ms)
+//     const CLONES_PER_SIDE   = 2;    // clones at each end
+
+//     // Breakpoints / a11y
+//     const mqMobile = window.matchMedia('(max-width: 740px)');
+//     const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+//     const INVERSE_MAPPING = [3, 0, 1, 4, 2]; // desktop choreography
+
+//     // ---------- Desktop FLIP ----------
+//     let desktopTimer = null;
+//     let desktopRunning = false;
+
+//     const shouldDesktop = () => !mqMobile.matches && !mqReduce.matches;
+
+//     function stepDesktop() {
+//       if (desktopRunning || !shouldDesktop()) return;
+
+//       const nodes = Array.from(belt.children);
+//       if (nodes.length < 5) return;
+
+//       desktopRunning = true;
+
+//       // BEFORE
+//       const before = new Map(nodes.map(n => [n, n.getBoundingClientRect()]));
+
+//       const frag = document.createDocumentFragment();
+//       INVERSE_MAPPING.map(i => nodes[i]).forEach(n => frag.appendChild(n));
+//       if (nodes.length > 5) nodes.slice(5).forEach(n => frag.appendChild(n));
+//       belt.appendChild(frag);
+
+//       const afterNodes = Array.from(belt.children);
+//       belt.classList.add('is-animating');
+
+//       // INVERT
+//       afterNodes.forEach(el => {
+//         const b = before.get(el);
+//         if (!b) return;
+//         const a = el.getBoundingClientRect();
+//         el.style.transition = 'none';
+//         el.style.transform  = `translate(${b.left - a.left}px, ${b.top - a.top}px)`;
+//       });
+
+//       // PLAY
+//       requestAnimationFrame(() => {
+//         afterNodes.forEach(el => {
+//           el.style.transition = `transform ${DESK_DURATION}ms ease`;
+//           el.style.transform  = 'translate(0,0)';
+//         });
+//         setTimeout(() => {
+//           afterNodes.forEach(el => { el.style.transition = ''; el.style.transform = ''; });
+//           belt.classList.remove('is-animating');
+//           desktopRunning = false;
+//         }, DESK_DURATION);
+//       });
+//     }
+
+//     function startDesktop() {
+//       if (!shouldDesktop() || desktopTimer) return;
+//       desktopTimer = setInterval(stepDesktop, DESK_INTERVAL);
+//     }
+//     function stopDesktop() {
+//       if (desktopTimer) { clearInterval(desktopTimer); desktopTimer = null; }
+//     }
+
+//     // Pause FLIP on hover (desktop)
+//     belt.addEventListener('mouseenter', stopDesktop);
+//     belt.addEventListener('mouseleave', startDesktop);
+
+//     // ---------- Mobile carousel (smooth) ----------
+//     let originals = [];
+//     let clonesPrepended = 0;
+//     let mobileIdx = 0;
+//     let mobileAnimating = false;
+//     let mobileTimer = null;   // chained timeouts (no drift)
+//     let userInteracting = false;
+//     let resumeTimer = null;
+
+//     const shouldMobile = () => mqMobile.matches && !mqReduce.matches;
+
+//     function saveOriginals() {
+//       originals = Array.from(belt.children).filter(n => !n.hasAttribute('data-clone'));
+//     }
+
+//     // easing
+//     const easeInOutCubic = t => (t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2);
+
+//     // center slide in viewport
+//     function targetScrollLeftForChildIndex(childIndex) {
+//       const el = belt.children[childIndex];
+//       const slideWidth = el.clientWidth;
+//       const leftInContent = el.offsetLeft;
+//       const centerOffset = (belt.clientWidth - slideWidth) / 2;
+//       return Math.max(0, leftInContent - Math.max(0, centerOffset));
+//     }
+
+//     // rAF smooth scroll
+//     function rAFScrollTo(target, duration, cb) {
+//       const start = belt.scrollLeft;
+//       const change = target - start;
+//       const startTime = performance.now();
+
+//       function step(now) {
+//         const t = Math.min(1, (now - startTime) / duration);
+//         belt.scrollLeft = start + change * easeInOutCubic(t);
+//         if (t < 1) requestAnimationFrame(step);
+//         else if (cb) cb();
+//       }
+//       requestAnimationFrame(step);
+//     }
+
+//     function stopMobileAutoplay() {
+//       if (mobileTimer) { clearTimeout(mobileTimer); mobileTimer = null; }
+//     }
+//     function scheduleNextMobile() {
+//       stopMobileAutoplay();
+//       mobileTimer = setTimeout(mobileNext, MOBILE_INTERVAL);
+//     }
+//     function stopMobile() {
+//       stopMobileAutoplay();
+//       if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; }
+//     }
+
+//     function teardownMobile() {
+//       stopMobile();
+//       Array.from(belt.querySelectorAll('[data-clone="1"]')).forEach(n => n.remove());
+//       clonesPrepended = 0;
+//       mobileIdx = 0;
+//       mobileAnimating = false;
+//       belt.scrollLeft = 0;
+//     }
+
+//     function mobileNext() {
+//       if (!shouldMobile() || mobileAnimating || originals.length < 2 || userInteracting) {
+//         if (shouldMobile()) scheduleNextMobile();
+//         return;
+//       }
+//       const count = originals.length;
+//       const nextIdx = mobileIdx + 1;
+
+//       const targetNodeIndex = clonesPrepended + nextIdx;
+//       const targetLeft = targetScrollLeftForChildIndex(targetNodeIndex);
+
+//       mobileAnimating = true;
+//       rAFScrollTo(targetLeft, MOBILE_SCROLL_MS, () => {
+//         mobileIdx = nextIdx;
+
+//         if (mobileIdx >= count) {
+//           mobileIdx = 0;
+//           const realFirst = targetScrollLeftForChildIndex(clonesPrepended);
+//           belt.scrollLeft = realFirst; // snap
+//         }
+
+//         mobileAnimating = false;
+//         scheduleNextMobile();
+//       });
+//     }
+
+//     function setupMobile() {
+//       saveOriginals();
+//       if (originals.length < 2) return;
+
+//       const take = Math.min(CLONES_PER_SIDE, originals.length);
+//       const makeClone = (n) => {
+//         const c = n.cloneNode(true);
+//         c.setAttribute('data-clone', '1');
+//         c.setAttribute('aria-hidden', 'true');
+//         return c;
+//       };
+
+//       const headClones = originals.slice(0, take).map(makeClone);
+//       const tailClones = originals.slice(-take).map(makeClone);
+
+//       tailClones.forEach(c => belt.insertBefore(c, belt.firstChild));
+//       headClones.forEach(c => belt.appendChild(c));
+//       clonesPrepended = tailClones.length;
+
+//       const startLeft = targetScrollLeftForChildIndex(clonesPrepended);
+//       belt.scrollLeft = startLeft;
+
+//       mobileIdx = 0;
+//       scheduleNextMobile();
+//     }
+
+//     // Interaction handling
+//     function markInteracting() {
+//       userInteracting = true;
+//       stopMobileAutoplay();
+//       if (resumeTimer) { clearTimeout(resumeTimer); }
+//     }
+//     function scheduleResume() {
+//       if (!shouldMobile()) return;
+//       if (resumeTimer) { clearTimeout(resumeTimer); }
+//       resumeTimer = setTimeout(() => {
+//         userInteracting = false;
+//         snapToNearestSlide();
+//         scheduleNextMobile();
+//       }, 900);
+//     }
+//     function snapToNearestSlide() {
+//       if (originals.length < 1) return;
+//       let bestIdx = 0, bestDist = Infinity;
+//       for (let i = 0; i < originals.length; i++) {
+//         const idxInBelt = clonesPrepended + i;
+//         const el = belt.children[idxInBelt];
+//         const elCenter = el.offsetLeft + el.clientWidth / 2;
+//         const viewportCenter = belt.scrollLeft + belt.clientWidth / 2;
+//         const dist = Math.abs(elCenter - viewportCenter);
+//         if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+//       }
+//       mobileIdx = bestIdx;
+//       belt.scrollLeft = targetScrollLeftForChildIndex(clonesPrepended + mobileIdx);
+//     }
+
+//     ['touchstart','pointerdown','wheel'].forEach(evt => {
+//       belt.addEventListener(evt, markInteracting, { passive: true });
+//     });
+//     ['touchend','pointerup'].forEach(evt => {
+//       belt.addEventListener(evt, scheduleResume, { passive: true });
+//     });
+//     let scrollDebounce = null;
+//     belt.addEventListener('scroll', () => {
+//       if (!shouldMobile()) return;
+//       markInteracting();
+//       if (scrollDebounce) clearTimeout(scrollDebounce);
+//       scrollDebounce = setTimeout(() => scheduleResume(), 120);
+//     }, { passive: true });
+
+//     // ---------- Mode switching ----------
+//     function syncMode() {
+//       if (mqReduce.matches) { stopDesktop(); teardownMobile(); return; }
+//       if (shouldMobile()) {
+//         stopDesktop();
+//         teardownMobile(); // clean state first
+//         setupMobile();
+//       } else {
+//         teardownMobile();
+//         startDesktop();
+//       }
+//     }
+
+//     mqMobile.addEventListener('change', syncMode);
+//     mqReduce.addEventListener('change', syncMode);
+//     window.addEventListener('resize', syncMode);
+//     document.addEventListener('visibilitychange', () => {
+//       if (document.hidden) { stopDesktop(); stopMobile(); }
+//       else { syncMode(); }
+//     });
+
+//     // init
+//     syncMode();
+//   }
+// })();

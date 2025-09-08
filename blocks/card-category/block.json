@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-category",
+  "title": "Section · Cards",
+  "category": "widgets",
+  "description": "Heading + subtitle + tabbed cards (mobile slider).",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "header":      { "type": "string", "default": "" },
+    "sub-title":   { "type": "string", "default": "" },
+    "button":      { "type": "array",  "default": [] }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css"
+}

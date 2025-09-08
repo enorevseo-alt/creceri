@@ -1,0 +1,166 @@
+:root {
+  --nav-h: 40px !important;
+}
+
+/* Container sizing – tweak to your layout */
+.hero-spotlight {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  width: 100%;
+  display: grid;
+  min-height: clamp(420px, 65vh, 680px);
+  margin-top: var(--nav-h) !important;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Background & overlay share a lot */
+.hero-spotlight__bg,
+.hero-spotlight__overlay {
+  margin-left: clamp(40px, 12vw, 200px);
+  margin-right: clamp(40px, 12vw, 200px);
+  position: absolute;
+  inset: 0;
+  border-radius: 10px !important;
+}
+
+.hero-spotlight__bg {
+  background-size: cover;
+  background-position: center; /* adjust as you had before */
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.hero-spotlight__overlay {
+  z-index: 1;
+  background: rgba(0,0,0,0.1); /* black overlay with 10% opacity */
+}
+
+/* Content */
+.hero-spotlight__content {
+  position: relative;
+  padding: clamp(40px, 8vw, 80px) clamp(80px, 20vw, 300px) clamp(40px, 8vw, 80px);
+  max-width: min(920px, 62%);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,10);
+  z-index: 2;
+}
+
+/* Title + text */
+.hero-spotlight__title {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  width: 800px;
+  z-index: 5;
+}
+
+.hero-spotlight__text {
+  margin: 0;
+  line-height: 1.55;
+  width: 90ch;
+}
+
+.wp-block-child-banner .hero-spotlight__btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 0.65rem 1.25rem;
+  border: 2px solid var(--bs-danger);
+  border-radius: 0.375rem;
+  background: var(--bs-danger);
+  color: #fff;
+  font-size: var(--wp--preset--font-size--body); /* matches <p> font */
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.wp-block-child-banner .hero-spotlight__btn:hover,
+.wp-block-child-banner .hero-spotlight__btn:focus {
+  background: #fff;
+  color: var(--bs-danger);
+  text-decoration: none;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 640px) {
+  .hero-spotlight {
+    min-height: 280px;
+    min-width: 100vw;
+    border-radius: 0;
+    display: block;
+    padding: 0;
+  }
+
+  .hero-spotlight__bg,
+  .hero-spotlight__overlay {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero-spotlight__bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center; /* Fill and center image */
+    padding: 0; /* Remove all padding */
+  }
+
+  .hero-spotlight__content {
+    position: relative;
+    width: 100%;
+    align-self: unset;
+    margin-top: 100px;
+    padding: clamp(8px, 2vw, 16px);
+    text-align: center;
+  }
+
+  .hero-spotlight__title,
+  .hero-spotlight__text {
+    width: 480px;
+  }
+}
+
+.wp-block-child-banner.alignfull {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: 100vw;
+  width: 100vw;
+  border-radius: 0;
+}
+
+.wp-block-child-banner.alignfull .hero-spotlight__bg,
+.wp-block-child-banner.alignfull .hero-spotlight__overlay {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border-radius: 0 !important;
+}
+
+.wp-block-child-banner.alignfull .hero-spotlight__content {
+  padding-left: var(--page-gutter-left, 1rem);
+  padding-right: var(--page-gutter-right, 1.5rem);
+  max-width: none;
+}
+
+.wp-site-blocks .wp-block-child-banner.alignwide {
+  max-width: 1830px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-block-child-banner.alignwide .hero-spotlight__bg,
+.wp-block-child-banner.alignwide .hero-spotlight__overlay {
+  margin-left: clamp(20px, 6vw, 120px);
+  margin-right: clamp(20px, 6vw, 120px);
+}

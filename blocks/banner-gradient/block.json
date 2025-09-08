@@ -1,0 +1,28 @@
+{
+  "apiVersion": 3,
+  "name": "child/banner-gradient",
+  "title": "Section · Banner Gradient",
+  "category": "widgets",
+  "description": "Gradient banner with title, subtitle, features, and optional list.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title":        { "type": "string", "default": "" },
+    "sub_title":    { "type": "string", "default": "" },
+    "footer_text":  { "type": "string", "default": "" },
+
+    "category_data": { "type": "array", "default": [] },
+    "category_list": { "type": "array", "default": [] },
+
+    "bgStart":      { "type": "string", "default": "#2ea7e0" },
+    "bgEnd":        { "type": "string", "default": "#73c6ff" },
+    "bgDirection":  { "type": "string", "default": "to right" }, 
+    "position":     { "type": "string", "default": "left" }       
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css"
+}

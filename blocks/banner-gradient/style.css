@@ -1,0 +1,113 @@
+
+  :root{
+    --bg-start:#2ea7e0;    /* gradient start color */
+    --bg-end:#73c6ff;      /* gradient end color */
+    --bg-angle:90deg;      /* gradient direction: 90deg = to right */
+    --text:#ffffff;
+    --text-soft:rgba(255,255,255,.9);
+    --text-mute:rgba(255,255,255,.75);
+    --maxw:1120px;
+  }
+  .connect-strip{
+    color:var(--text);
+    /* Direction is configurable via --bg-angle (e.g., 90deg, to right, to bottom) */
+    background: linear-gradient(var(--bg-angle, 90deg), var(--bg-start), var(--bg-end));
+    padding: 28px 0 10px;
+  }
+
+  .container{
+    width: min(var(--maxw), 100% - 48px);
+    margin: 0 auto;
+    text-align:center;
+  }
+
+  .title{
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+
+  .sub{
+    color: var(--text-soft);
+    margin: 0 0 28px;
+  }
+
+  .features{
+    --gap: 28px;
+    display:flex !important;
+    flex-wrap: nowrap !important; /* keep items on one row */
+    gap: var(--gap);
+    align-items: start;
+    margin-bottom: 22px;
+    overflow-x: auto;          /* scroll horizontally when more items */
+    scroll-snap-type: x proximity;
+    justify-content: center;
+  }
+
+  .feature, article.feature{
+    padding: 8px 12px;
+    box-sizing: border-box;
+    min-width: 0;              /* allow shrink inside flex row */
+    /* 5 items across, account for 4 gaps between them */
+    flex: 0 0 calc((100% - (4 * var(--gap))) / 5);
+    scroll-snap-align: start;
+  }
+
+  .icon{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-bottom: -12px;
+    display:block;
+    stroke:#fff;
+    fill:none;
+    stroke-width:2.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  .feature h3{
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .feature p{
+    margin: 0;
+    color: var(--text-mute);
+    font-size: 18px;
+  }
+  .feature__text{ max-width: 520px; margin: 0 auto; }
+  .features_list ul, .features_list ol{
+    margin: 8px auto 0;
+    padding-left: 1.2rem;
+  }
+  .features_list ul{ list-style: disc; }
+  .features_list ol{ list-style: decimal; }
+  .features_list li{ display: list-item; margin: 4px 0; }
+
+  .tip{
+    margin-top: 20px;
+    color: var(--text-mute);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px){
+    /* Switch to a 2-column grid so counts 3,4,5 become 2-1, 2-2, 2-2-1 */
+    .features{ display:grid !important; grid-template-columns: repeat(2, 1fr); gap: var(--gap); overflow: visible; }
+    .feature, article.feature{ flex: initial; min-width: auto; }
+    /* If there is an odd number of items, center the last one */
+    .features > .feature:last-child:nth-child(odd),
+    .features > article.feature:last-child:nth-child(odd){
+      grid-column: 1 / -1;      /* span both columns */
+      justify-self: center;     /* center the item itself */
+    }
+  }
+  @media (max-width: 600px){
+    /* Keep 2 columns even on small phones to preserve the 2-top pattern */
+    .features{ display:grid !important; grid-template-columns: repeat(2, 1fr); gap: var(--gap); }
+    .feature, article.feature{ flex: initial; }
+    .connect-strip{ padding: 36px 0 30px; }
+    .features > .feature:last-child:nth-child(odd),
+    .features > article.feature:last-child:nth-child(odd){
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+  }

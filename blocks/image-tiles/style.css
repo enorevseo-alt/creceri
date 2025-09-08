@@ -1,0 +1,55 @@
+/* Container + heading */
+.collection .container {
+  width: 100%;
+}
+.collection__title{ text-align:center; margin: 6px 0 14px; font-weight: 700; }
+
+/* Every tile */
+.tile{
+  position:relative; overflow:hidden; border-radius:14px;
+  display:block; box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+.tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Mobile shuffle card (hidden by default) */
+.mosaic-shuffle{ display:none; position:relative; border-radius:14px; overflow:hidden; box-shadow:0 6px 16px rgba(0,0,0,.08); cursor:pointer; }
+.mosaic-shuffle img{ width:100%; height:650px; display:block; aspect-ratio: 3 / 2; object-fit: contain; transition: opacity .2s ease; }
+.mosaic-shuffle img.is-fading{ opacity: .6; }
+/* Visible Next button indicator */
+.mosaic-shuffle__next{
+  position:absolute; right:10px; bottom:10px;
+  width:44px; height:44px; border-radius:999px;
+  background:rgba(0,0,0,.6); color:#fff; border:0;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 3px 10px rgba(0,0,0,.25); cursor:pointer;
+}
+.mosaic-shuffle__next::after{ content:'\203A'; /* › chevron */ font-size:26px; line-height:1; }
+.mosaic-shuffle__next:hover{ background:rgba(0,0,0,.72); }
+.mosaic-shuffle__next:focus{ outline:2px solid #fff; outline-offset:2px; }
+
+/* Layout (desktop) */
+.video-teaser{
+  position:relative; overflow:hidden; border-radius:14px;
+  display:block; box-shadow:0 6px 16px rgba(0,0,0,.08);
+  width:100%;
+  margin-top:16px;
+}
+.video-teaser iframe{
+  width:100%;
+  height:auto;
+  aspect-ratio:16 / 9;
+  display:block;
+  border:0;
+}
+
+/* Responsive (tablet + mobile) */
+@media (max-width: 900px){
+  .mosaic{ grid-template-columns: repeat(6, 1fr); }
+  .tile.d{ grid-column: 4 / span 2; } /* keep big right 2 cols wide */
+}
+
+@media (max-width: 680px){
+  /* Hide grid on mobile and show shuffle */
+  .mosaic{ display:none; }
+  .mosaic-shuffle{ display:block; }
+}

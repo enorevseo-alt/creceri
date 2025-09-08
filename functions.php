@@ -77,12 +77,17 @@ add_filter('use_block_editor_for_post', 'ai_disable_editor_on_home', 10, 2);
 
 /* -----------------------  Custom blocks  ----------------------- */
 add_action('init', function () {
+  register_block_type_from_metadata(__DIR__ . '/blocks/banner');
   register_block_type_from_metadata(__DIR__ . '/blocks/hero-banner');
   register_block_type_from_metadata(__DIR__ . '/blocks/carousel');
   register_block_type_from_metadata(__DIR__ . '/blocks/carousel-infinite');
   register_block_type_from_metadata(__DIR__ . '/blocks/activities-gallery');
   register_block_type_from_metadata(__DIR__ . '/blocks/col-text-cards');
   register_block_type_from_metadata(__DIR__ . '/blocks/grid-two-article');
+  register_block_type_from_metadata(__DIR__ . '/blocks/card-category');
+  register_block_type_from_metadata(__DIR__ . '/blocks/card-img');
+  register_block_type_from_metadata(__DIR__ . '/blocks/banner-gradient');
+  register_block_type_from_metadata(__DIR__ . '/blocks/image-tiles');
 });
 
 
