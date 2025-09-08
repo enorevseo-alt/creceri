@@ -67,11 +67,11 @@
 #navbar .dropdown-menu > .dropdown-submenu > .dropdown-toggle{
   position:relative; font-weight:700; color:#666;
   border-radius:.35rem; padding:.6rem .9rem;
+  cursor:pointer;
 }
 #navbar .dropdown-menu > .dropdown-submenu > .dropdown-toggle:hover{
   background:rgba(0,0,0,.05); color:#333;
 }
-
 #navbar .dropdown-menu > .dropdown-submenu > .dropdown-toggle::after{
   content:"›";
   position:absolute; right:.65rem; top:50%; transform:translateY(-48%);
@@ -108,6 +108,14 @@
   }
   #navbar .dropdown-submenu:hover > .dropdown-menu,
   #navbar .dropdown-submenu:focus-within > .dropdown-menu{
+    opacity:1; visibility:visible; transform:translateX(0); transition-delay:0s;
+  }
+
+  /* NEW: show panels when opened via click */
+  #navbar .nav-item.dropdown.open-click > .dropdown-menu{
+    opacity:1; visibility:visible; transform:translateY(0); transition-delay:0s;
+  }
+  #navbar .dropdown-submenu.open-click > .dropdown-menu{
     opacity:1; visibility:visible; transform:translateX(0); transition-delay:0s;
   }
 }

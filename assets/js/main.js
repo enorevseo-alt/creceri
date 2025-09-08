@@ -2,8 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('navbar');
   if (!nav) return;
 
-  const links = nav.querySelectorAll('a.nav-link, .dropdown-menu a.dropdown-item');
+  const isDesktop = () => window.matchMedia('(min-width: 992px)').matches;
 
+  /* ---------------- Active link highlighting (unchanged) ---------------- */
+  const links = nav.querySelectorAll('a.nav-link, .dropdown-menu a.dropdown-item');
   const norm = (href) => {
     try {
       const u = new URL(href, window.location.origin);
@@ -12,9 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return p;
     } catch { return href; }
   };
-
   const current = norm(window.location.pathname);
-
   links.forEach(a => a.classList.remove('active'));
 
   let best = null, bestLen = -1;
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const p = norm(a.getAttribute('href'));
     if (p === current) { best = a; bestLen = p.length; }
   });
-
   if (!best) {
     links.forEach(a => {
       const p = norm(a.getAttribute('href'));
@@ -31,50 +30,125 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
   if (best) {
     best.classList.add('active');
-
     const menu = best.closest('.dropdown-menu');
     if (menu) {
       const parentToggle = menu.parentElement?.querySelector('> a.dropdown-toggle, > .nav-link.dropdown-toggle');
       if (parentToggle) parentToggle.classList.add('active');
     }
   }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-  const isDesktop = () => window.matchMedia('(min-width: 992px)').matches;
+  /* ---------------- Helpers for click-open state (desktop) ---------------- */
+  const clearClickOpens = () => {
+    // Remove custom open state on desktop
+    nav.querySelectorAll('.open-click').forEach(el => el.classList.remove('open-click'));
+    // Reset "tap once" markers so next click will open again first
+    nav.querySelectorAll('[data-tap-once="1"]').forEach(a => a.removeAttribute('data-tap-once'));
+  };
 
-  document.querySelectorAll('#navbar .dropdown-submenu > .dropdown-toggle').forEach(parentLink => {
+  const clickOutside = (evt) => {
+    if (!nav.contains(evt.target)) clearClickOpens();
+  };
+  document.addEventListener('click', clickOutside);
+
+  // Also clear when resizing across breakpoints
+  window.addEventListener('resize', () => { if (!isDesktop()) clearClickOpens(); });
+
+  /* ---------------- Mobile: expand/collapse submenus (your logic) ---------------- */
+  nav.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(parentLink => {
     parentLink.addEventListener('click', function (e) {
-      if (isDesktop()) return;
+      if (isDesktop()) return; // mobile only
 
-      const submenu = this.nextElementSibling; 
+      const submenu = this.nextElementSibling;
       if (!submenu) return;
 
       const isOpen = submenu.classList.contains('show');
 
+      // Close siblings
       const siblings = this.closest('.dropdown-menu')
         .querySelectorAll(':scope > .dropdown-submenu > .dropdown-menu.show');
       siblings.forEach(s => { if (s !== submenu) s.classList.remove('show'); });
 
       if (!isOpen) {
-        e.preventDefault();      
-        e.stopPropagation();     
+        e.preventDefault();
+        e.stopPropagation();
         submenu.classList.add('show');
         this.setAttribute('aria-expanded', 'true');
+      } else {
+        // Allow default to navigate on second tap
+        this.setAttribute('aria-expanded', 'false');
       }
     });
   });
 
-  document.querySelectorAll('#navbar .nav-item.dropdown').forEach(dd => {
+  // When the main dropdown closes, collapse any open mobile submenus
+  nav.querySelectorAll('.nav-item.dropdown').forEach(dd => {
     dd.addEventListener('hide.bs.dropdown', () => {
       dd.querySelectorAll('.dropdown-menu.show').forEach(m => m.classList.remove('show'));
       dd.querySelectorAll('.dropdown-submenu > .dropdown-toggle[aria-expanded="true"]')
         .forEach(t => t.setAttribute('aria-expanded','false'));
     });
   });
+
+  /* ---------------- Desktop: tap/click to open right-flyout, 2nd tap to go ---------------- */
+  // For each region link that has a submenu (e.g., Europe, South East Asia)
+  nav.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(parentLink => {
+    parentLink.addEventListener('click', function (e) {
+      if (!isDesktop()) return; // desktop only
+
+      const li = this.parentElement;                 // .dropdown-submenu
+      const submenu = this.nextElementSibling;       // its .dropdown-menu
+      if (!submenu) return;
+
+      const tappedOnce = this.getAttribute('data-tap-once') === '1';
+
+      if (!tappedOnce) {
+        // First click: open the flyout and prevent navigation
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close any other open-click submenus on the same level
+        const siblings = li.parentElement?.querySelectorAll(':scope > .dropdown-submenu.open-click');
+        siblings?.forEach(s => { if (s !== li) s.classList.remove('open-click'); });
+
+        // Mark this one open
+        li.classList.add('open-click');
+        this.setAttribute('aria-expanded', 'true');
+
+        // Remember that we've tapped once; next click should follow the link
+        this.setAttribute('data-tap-once', '1');
+      } else {
+        // Second click: allow navigation to the region page
+        // Clean up open-click state so animations don’t linger
+        clearClickOpens();
+        // (No preventDefault) — proceed to href
+      }
+    });
+
+    // Optional: if pointer leaves the submenu area, reset the "tap once" so next click opens again
+    parentLink.parentElement.addEventListener('mouseleave', () => {
+      if (!isDesktop()) return;
+      parentLink.removeAttribute('data-tap-once');
+      parentLink.parentElement.classList.remove('open-click');
+    });
+  });
+
+  /* ---------------- Desktop: also allow click to hold open the top dropdown ---------------- */
+  const topDestinations = nav.querySelector('.nav-item.dropdown > .nav-link.dropdown-toggle');
+  if (topDestinations) {
+    topDestinations.addEventListener('click', function(e){
+      if (!isDesktop()) return; // Bootstrap handles mobile
+      // Toggle click-open for the first panel (under "Destinations") without navigating
+      e.preventDefault();
+      e.stopPropagation();
+      const li = this.closest('.nav-item.dropdown');
+      const open = li.classList.contains('open-click');
+      // Close all first
+      nav.querySelectorAll('.nav-item.dropdown.open-click').forEach(n => n.classList.remove('open-click'));
+      if (!open) li.classList.add('open-click');
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -280,3 +354,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.TCCarousel = { initAll, init: initCarousel };
 })();
+
