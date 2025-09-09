@@ -11,7 +11,7 @@
   $height        = $banner_size === 'large' ? '703px' : '403px';
   $align_content = $banner_size === 'large' ? 'end' : 'center';
 
-  // IMPORTANT: this injects alignwide/alignfull (and spacing, etc.)
+  // IMPORTANT: this injects alignwide/alignfull (and spacing, etc.) testing
   $wrapper_attributes = get_block_wrapper_attributes( [
     'class' => 'wp-block-child-banner hero-spotlight'
   ] );
