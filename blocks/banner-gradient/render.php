@@ -4,6 +4,7 @@ $sub_title    = $attributes['sub_title'] ?? '';
 $footer_text  = $attributes['footer_text'] ?? '';
 $category_data        = $attributes['category_data'] ?? [];
 $category_list        = $attributes['category_list'] ?? [];
+$hide                 = $attributes['hide'] ?? '';
 ?>
 <?php
   // Allow per-instance gradient colors from block attributes or template usage
@@ -25,7 +26,7 @@ $category_list        = $attributes['category_list'] ?? [];
     <h2 class="title"><?php echo esc_html( $title ); ?></h2>
     <p class="sub"><?php echo esc_html( $sub_title ); ?></p>
 
-    <div class="features row" >
+    <div class="features row <?php if(empty($category_data)){ echo "hide" ; }?>" >
       <!-- Feature 1 -->
       <?php if (!empty($category_data)) : ?>
         <?php foreach ($category_data as $card) :
@@ -45,7 +46,7 @@ $category_list        = $attributes['category_list'] ?? [];
       <?php endif; ?>
     </div>
 
-     <div class="features_list" >
+     <div class="features_list">
       <!-- Feature 1 -->
       <?php if (!empty($category_list)) : ?>
         <?php foreach ($category_list as $card_data) :

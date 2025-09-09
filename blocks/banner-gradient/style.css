@@ -74,7 +74,11 @@
     color: var(--text-mute);
     font-size: 18px;
   }
+  .hide{
+    display:none !important;
+  }
   .feature__text{ max-width: 520px; margin: 0 auto; }
+ 
   .features_list ul, .features_list ol{
     margin: 8px auto 0;
     padding-left: 1.2rem;
