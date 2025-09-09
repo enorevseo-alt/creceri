@@ -5,6 +5,58 @@
   max-width: 100% !important;
 }
 
+/* Mobile: same layout as tablet (vertical stack, fixed height) */
+@media (max-width: 767.98px) {
+  .wp-block-child-grid-two-article .stack-tablet {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 450px !important;
+    gap: .75rem;
+  }
+  .wp-block-child-grid-two-article .stack-tablet .item-thumb {
+    width: 100%;
+    height: clamp(200px, 50vw, 260px);
+    object-fit: cover;
+    border-radius: .5rem;
+  }
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-item-heading,
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-country,
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-desc {
+    text-align: center;
+  }
+}
+
+/* Tablet: vertical layout + fixed height + 1-per-row */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Make each card column full-width on tablet (override BS col-md-6) */
+  .wp-block-child-grid-two-article .col-md-6 { flex: 0 0 100% !important; max-width: 100% !important; }
+
+  /* Force item row to stack vertically with fixed height */
+  .wp-block-child-grid-two-article .stack-tablet {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 450px !important;
+    gap: .75rem;
+  }
+
+  /* Image on top, filling width; sensible height for 450px row */
+  .wp-block-child-grid-two-article .stack-tablet .item-thumb {
+    width: 100%;
+    height: clamp(200px, 28vw, 260px);
+    object-fit: cover;
+    border-radius: .5rem;
+  }
+
+  /* Text remains below image; center if desired */
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-item-heading,
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-country,
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-desc {
+    text-align: center;
+  }
+}
+
 .container-grid {
 	padding-left: var(--page-gutter-left, 1rem) !important;
   padding-right: var(--page-gutter-right, 1.5rem) !important;
@@ -79,7 +131,10 @@
   color: #6c757d;
   margin: 0;
 }
-@media (min-width: 768px) and (max-width: 991.98px) {
+.stack-tablet{
+  height:220px;
+}
+@media (min-width: 750px) and (max-width: 991.98px) {
   /* Stack card items vertically on tablet */
   .wp-block-child-grid-two-article .card-body .d-flex {
     flex-direction: column;
@@ -94,7 +149,9 @@
   .wp-block-child-grid-two-article .container-grid {
     padding: 0 !important;
   }
-  
+  .stack-tablet{
+    height:550px;
+  }
   /* Explicit stacking for rows marked with .stack-tablet */
   .wp-block-child-grid-two-article .stack-tablet {
     flex-direction: column;
@@ -106,12 +163,13 @@
     height: 200px;
   }
   .wp-block-child-grid-two-article .stack-tablet .grid-two-article-item-heading { margin-top: .25rem; }
-
-}
-
-/* Mobile: stack vertically and make image auto height */
-@media (max-width: 700.98px) {
-  .wp-block-child-grid-two-article .container-grid {
-    padding: 0 !important;
+  
+  /* Center-align heading and text when stacked */
+  .wp-block-child-grid-two-article .stack-tablet { align-items: center; }
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-item-heading,
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-country,
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-desc {
+    text-align: center;
   }
+
 }

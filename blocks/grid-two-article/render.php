@@ -83,7 +83,7 @@
         <div class="card border-0 rounded-4">
           <div class="card-header bg-white border-0 pt-4 pb-0 px-4">
             <h4 class="grid-two-article-card-heading border-bottom pb-3 mb-3">
-              <?php echo esc_html($heading); ?>
+              <?php echo esc_html($heading); ?><br>
               <?php if ($country): ?>
                 <a href="#" class="topic-link"><?php echo esc_html($country); ?></a>
               <?php endif; ?>
@@ -99,7 +99,7 @@
                 $t            = $it['text']         ?? '';
               ?>
               <a href="<?php echo esc_url($url); ?>" class="text-decoration-none text-dark">
-                <div class="d-flex align-items-start gap-3 py-3 position-relative stack-tablet">
+                <div class="d-flex align-items-start gap-3 py-3 position-relative stack-tablet" >
                   <span class="num-badge"><?php echo esc_html($count); ?></span>
                   <?php if ($img): ?>
                     <img class="item-thumb" src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($heading_data ?: ''); ?>">
