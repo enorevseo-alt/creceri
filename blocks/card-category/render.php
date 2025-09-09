@@ -71,6 +71,8 @@
                       <?php if ($text !== ''): ?>
                         <p class="text-muted mb-3"><?php echo esc_html($text); ?></p>
                       <?php endif; ?>
+                    </div>
+                    <div class="card-footer">
                       <?php if ($url !== ''): ?>
                         <a href="<?php echo esc_url($url); ?>" class="btn btn-cta w-100 fw-semibold rounded-3 btn-danger">Explore</a>
                       <?php endif; ?>

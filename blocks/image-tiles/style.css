@@ -53,3 +53,34 @@
   .mosaic{ display:none; }
   .mosaic-shuffle{ display:block; }
 }
+
+/* Enhanced mobile next control: animated label + arrow */
+.mosaic-shuffle__next{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  border:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  line-height:1;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.2px;
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+  animation: shufflePulse 1.8s ease-out infinite;
+}
+.mosaic-shuffle__next::after{ content:''; font-size:20px; transform: translateX(0); animation: shuffleNudge 1.2s ease-in-out infinite; }
+.mosaic-shuffle__next:hover{ background:rgba(0,0,0,.72); }
+.mosaic-shuffle__next:focus{ outline:2px solid #fff; outline-offset:2px; }
+
+@keyframes shufflePulse {
+  0%   { box-shadow:0 0 0 0 rgba(255,255,255,.35); }
+  70%  { box-shadow:0 0 0 10px rgba(255,255,255,0); }
+  100% { box-shadow:0 0 0 0 rgba(255,255,255,0); }
+}
+@keyframes shuffleNudge {
+  0%,100% { transform: translateX(0); }
+  50%     { transform: translateX(4px); }
+}

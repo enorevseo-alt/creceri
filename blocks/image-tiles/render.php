@@ -85,8 +85,10 @@
     echo "@media (max-width:680px){ .mosaic{ display:none !important; } .mosaic-shuffle{ display:block; } }\n";
     // Ensure visible next button indicator even if theme CSS is cached
     echo ".mosaic-shuffle{ position:relative; }\n";
-    echo ".mosaic-shuffle__next{ position:absolute; right:10px; bottom:10px; width:44px; height:44px; border-radius:999px; background:rgba(0,0,0,.6); color:#fff; border:0; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,.25); z-index:2; }\n";
-    echo ".mosaic-shuffle__next::after{ content:'\\203A'; font-size:26px; line-height:1; }\n";
+    echo ".mosaic-shuffle__next{ position:absolute; right:10px; bottom:10px; padding:8px 12px; border-radius:999px; background:rgba(0,0,0,.62); color:#fff; border:0; display:flex; align-items:center; gap:8px; line-height:1; font-size:13px; font-weight:600; letter-spacing:.2px; box-shadow:0 6px 16px rgba(0,0,0,.25); z-index:2; cursor:pointer; animation:shufflePulse 1.8s ease-out infinite; }\n";
+    echo ".mosaic-shuffle__next::after{ content:'\\203A \\203A \\203A \\203A'; margin-top:-3px;font-size:20px; transform:translateX(0); animation:shuffleNudge 1.2s ease-in-out infinite; }\n";
+    echo "@keyframes shufflePulse{ 0%{ box-shadow:0 0 0 0 rgba(255,255,255,.35);} 70%{ box-shadow:0 0 0 10px rgba(255,255,255,0);} 100%{ box-shadow:0 0 0 0 rgba(255,255,255,0);} }\n";
+    echo "@keyframes shuffleNudge{ 0%,100%{ transform:translateX(0);} 50%{ transform:translateX(4px);} }\n";
     foreach ($letters as $L) {
       if (!isset($layout['pos'][$L])) continue;
       $p = $layout['pos'][$L];

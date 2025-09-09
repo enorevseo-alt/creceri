@@ -79,3 +79,39 @@
   color: #6c757d;
   margin: 0;
 }
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Stack card items vertically on tablet */
+  .wp-block-child-grid-two-article .card-body .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  /* Make the thumbnail span full width above text */
+  .wp-block-child-grid-two-article .item-thumb {
+    width: 100%;
+    height: 200px;
+  }
+  /* Optional: tighter grid padding for the block */
+  .wp-block-child-grid-two-article .container-grid {
+    padding: 0 !important;
+  }
+  
+  /* Explicit stacking for rows marked with .stack-tablet */
+  .wp-block-child-grid-two-article .stack-tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: .75rem;
+  }
+  .wp-block-child-grid-two-article .stack-tablet .item-thumb {
+    width: 100%;
+    height: 200px;
+  }
+  .wp-block-child-grid-two-article .stack-tablet .grid-two-article-item-heading { margin-top: .25rem; }
+
+}
+
+/* Mobile: stack vertically and make image auto height */
+@media (max-width: 700.98px) {
+  .wp-block-child-grid-two-article .container-grid {
+    padding: 0 !important;
+  }
+}

@@ -56,7 +56,7 @@
     };
 
 ?>
-<div class="container py-5" style="<?php echo esc_attr($bgStyle); ?>">
+<div class="wp-block-child-grid-two-article container py-5" style="<?php echo esc_attr($bgStyle); ?>">
     <?php if ($title || $subtitle): ?>
     <h2 class="grid-two-article-title header-content pb-4">
       <?php if ($title): ?>
@@ -79,7 +79,7 @@
         $url     = $card['url']     ?? '';
         $items   = $card['items']   ?? [];
       ?>
-      <div class="col-12 col-lg-6">
+      <div class="col-12 col-md-6 col-lg-6">
         <div class="card border-0 rounded-4">
           <div class="card-header bg-white border-0 pt-4 pb-0 px-4">
             <h4 class="grid-two-article-card-heading border-bottom pb-3 mb-3">
@@ -99,7 +99,7 @@
                 $t            = $it['text']         ?? '';
               ?>
               <a href="<?php echo esc_url($url); ?>" class="text-decoration-none text-dark">
-                <div class="d-flex align-items-start gap-3 py-3 position-relative">
+                <div class="d-flex align-items-start gap-3 py-3 position-relative stack-tablet">
                   <span class="num-badge"><?php echo esc_html($count); ?></span>
                   <?php if ($img): ?>
                     <img class="item-thumb" src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($heading_data ?: ''); ?>">

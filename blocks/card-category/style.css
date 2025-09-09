@@ -10,7 +10,7 @@
 .btn-cta:hover{ background:#ff3c4d; border-color:#ff3c4d; color:#fff; }
 
 .card-img-top{ width:100% !important; padding:10px !important; border-radius:20px; }
-
+.card-footer{ border:solid #fff 2px !important ;background:#fff !important ; }
 /* Mobile slider */
 @media (max-width:768px){
   .slider-row{
