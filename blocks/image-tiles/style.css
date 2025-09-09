@@ -83,7 +83,14 @@
   box-shadow:0 6px 16px rgba(0,0,0,.25);
   animation: shufflePulse 1.8s ease-out infinite;
 }
-.mosaic-shuffle__next::after{ content:''; font-size:20px; transform: translateX(0); animation: shuffleNudge 1.2s ease-in-out infinite; }
+.mosaic-shuffle__next::after{
+  content:'';
+  width:18px; height:18px; display:inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='8 4 16 12 8 20'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:center; background-size:contain;
+  transform: translateX(0);
+  animation: shuffleNudge 1.2s ease-in-out infinite;
+}
 .mosaic-shuffle__next:hover{ background:rgba(0,0,0,.72); }
 .mosaic-shuffle__next:focus{ outline:2px solid #fff; outline-offset:2px; }
 
