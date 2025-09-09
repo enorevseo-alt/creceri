@@ -50,10 +50,11 @@
 
 @media (max-width: 680px){
   /* Hide grid on mobile and show shuffle */
-  .mosaic{ display:none; }
+  .mosaic{ display:none;}
   .mosaic-shuffle{ 
     display:grid;            /* center content easily */
     place-items:center;
+    margin-bottom:30px;
     aspect-ratio: 3 / 2;     /* fixed canvas for images */
   }
   .mosaic-shuffle img{
