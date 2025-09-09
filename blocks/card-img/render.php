@@ -1,13 +1,15 @@
 <?php
-  $items        = $attributes['items'] ?? [];
-  $show_read    = $attributes['showReadLink'] ?? false;
-  $global_read  = $attributes['readLinkText'] ?? 'Read more';
-  $header_title = $attributes['title'] ?? '';
-  $description  = $attributes['intro'] ?? '';
+$items        = $attributes['items'] ?? [];
+$show_read    = $attributes['showReadLink'] ?? false;
+$global_read  = $attributes['readLinkText'] ?? 'Read more';
+$header_title = $attributes['title'] ?? '';
+$description  = $attributes['intro'] ?? '';
+$animation  = (isset($attributes['animation']) && $attributes['animation'] === 'On') ? 'belt' : '';
+$items_count  = 1;
 ?>
 <div class="container py-4">
-  <section class="food-section wp-block-child-card-img-animation">
-    <header class="section-header">
+  <section class="food-section">
+    <header class="section-header ">
       <?php if ($header_title) : ?>
         <h2 class="section-title"><?php echo esc_html($header_title); ?></h2>
       <?php endif; ?>
@@ -16,24 +18,25 @@
         <p class="section-subtitle"><?php echo esc_html($description); ?></p>
       <?php endif; ?>
     </header>
-
+    
+    <div class="row g-4 justify-content-center mt-2"></div>    
     <?php if (!empty($items)) : ?>
-      <div class="food-grid belt" id="">
+      <div class="food-grid<?php echo $animation ? ' belt' : ''; ?>" <?php echo $animation ? 'id="belt"' : ''; ?>>
         <?php foreach ($items as $card) :
-          $img        = $card['image']   ?? '';
-          $h          = $card['heading'] ?? '';
-          $t          = $card['text']    ?? '';
-          $link       = $card['link']['url']   ?? ($card['link'] ?? '');
-          $link_title = $card['link']['title'] ?? $global_read;
+          $img         = $card['image']   ?? '';
+          $h           = $card['heading'] ?? '';
+          $t           = $card['text']    ?? '';
+          $link        = $card['link']['url']   ?? ($card['link'] ?? '');
+          $link_title  = $card['link']['title'] ?? $global_read;
         ?>
-          <article class="food-card">
+          <article class="food-card ">
             <figure class="food-card__media">
-              <?php if ($img) : ?>
+              <?php if ($img) : ?> 
                 <img
                   src="<?php echo esc_url($img); ?>"
                   alt="<?php echo esc_attr($h ?: ''); ?>"
                   loading="lazy"
-                  decoding="async"
+                  decoding="async" 
                 />
               <?php else : ?>
                 <div class="food-card__media--empty" aria-hidden="true"></div>
@@ -56,8 +59,11 @@
               <?php endif; ?>
             </div>
           </article>
-        <?php endforeach; ?>
+        <?php
+          $items_count++;
+          endforeach; ?>
       </div>
     <?php endif; ?>
   </section>
+</div>
 </div>
