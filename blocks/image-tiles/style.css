@@ -51,7 +51,18 @@
 @media (max-width: 680px){
   /* Hide grid on mobile and show shuffle */
   .mosaic{ display:none; }
-  .mosaic-shuffle{ display:block; }
+  .mosaic-shuffle{ 
+    display:grid;            /* center content easily */
+    place-items:center;
+    aspect-ratio: 3 / 2;     /* fixed canvas for images */
+  }
+  .mosaic-shuffle img{
+    width:100%;
+    height:100%;
+    object-fit: cover;        /* fill the division */
+    object-position: center;  /* center the image */
+    aspect-ratio: auto;       /* let container control ratio */
+  }
 }
 
 /* Enhanced mobile next control: animated label + arrow */
