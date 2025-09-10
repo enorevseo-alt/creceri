@@ -1,0 +1,58 @@
+
+    .section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+    }
+
+    .item {
+      display: flex;
+      align-items: center; /* <-- center icon with text */
+      text-align: left;
+      flex: 1;
+      max-width: 500px;
+      gap: 12px;
+    }
+
+    .item img {
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .item p {
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Vertical Line for Desktop */
+    .divider {
+      width: 2px;
+      background: red;
+      height: 80px;
+    }
+
+    /* Responsive: Mobile/Tablet */
+    @media (max-width: 768px) {
+      .timeline {
+        flex-direction: column;
+      }
+
+      .divider {
+        width: 80px;
+        height: 2px;
+        margin: 15px 0;
+      }
+
+      .item {
+        max-width: 100%;
+      }
+    }

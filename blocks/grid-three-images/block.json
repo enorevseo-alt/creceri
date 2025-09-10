@@ -1,0 +1,37 @@
+{
+  "apiVersion": 3,
+  "name": "child/grid-three-images",
+  "title": "Section · Cards",
+  "category": "widgets",
+  "description": "Reusable section: heading + intro + N cards + optional CTA.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title":              { "type": "string",  "default": "" },
+    "category_sub_title": { "type": "array",   "default": [] },
+    "image":              { "type": "string",  "default": "" },
+    "heading":            { "type": "string",  "default": "" },
+    "heading_data":       { "type": "string",  "default": "" },
+    "sub-header":         { "type": "string",  "default": "" },
+    "country":            { "type": "string",  "default": "" },
+    "text":               { "type": "string",  "default": "" },
+    "intro":              { "type": "string",  "default": "" },
+    "ctaText":            { "type": "string",  "default": "" },
+    "ctaUrl":             { "type": "string",  "default": "" },
+    "items":              { "type": "array",   "default": [] },
+    "variant":            { "type": "string",  "default": "plain" },
+    "cols":               { "type": "object",  "default": { "xs":1,"sm":2,"lg":4 } },
+    "cardLinkBehavior":   { "type": "string",  "default": "stretched" },
+
+    "backgroundType":     { "type": "string",  "default": "none" },                
+    "backgroundValue":    { "type": "string",  "default": "" },                  
+    "gradientDirection":  { "type": "string",  "default": "to bottom" },        
+    "gradientColors":     { "type": "array",   "default": ["#ffffff","#f7f7f7"] }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css"
+}
