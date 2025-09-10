@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "child/grid-two-content",
+  "title": "Section · Cards",
+  "category": "widgets",
+  "description": "Reusable section: heading + intro + N cards + optional CTA.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title":              { "type": "string",  "default": "" },
+    "do_items": { "type": "array",   "default": [] },
+    "dont_items": { "type": "array",   "default": [] }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css"
+}

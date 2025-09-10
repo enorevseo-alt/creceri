@@ -84,13 +84,17 @@ add_action('init', function () {
   register_block_type_from_metadata(__DIR__ . '/blocks/activities-gallery');
   register_block_type_from_metadata(__DIR__ . '/blocks/col-text-cards');
   register_block_type_from_metadata(__DIR__ . '/blocks/grid-two-article');
+  register_block_type_from_metadata(__DIR__ . '/blocks/grid-two-content');
   register_block_type_from_metadata(__DIR__ . '/blocks/grid-three-images');
   register_block_type_from_metadata(__DIR__ . '/blocks/card-category');
   register_block_type_from_metadata(__DIR__ . '/blocks/card-img');
   register_block_type_from_metadata(__DIR__ . '/blocks/banner-gradient');
   register_block_type_from_metadata(__DIR__ . '/blocks/image-tiles');
 });
-
+function enqueue_fa_icons() {
+    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_fa_icons' );
 
 /* -------- Redirect unknown front-end pages to Home and show a toast -------- */
 add_action('template_redirect', function () {
