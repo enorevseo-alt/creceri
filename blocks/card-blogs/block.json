@@ -1,0 +1,24 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-blogs",
+  "title": "Section · Banner",
+  "category": "widgets",
+  "description": "Hero/banner with background image, title, text, and optional button.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title":        { "type": "string",  "default": "" },
+    "img":          { "type": "string",  "default": "" },
+    "description":  { "type": "string",  "default": "" },
+    "banner_size":  { "type": "string",  "default": "small" },
+    "showButton":   { "type": "boolean", "default": true },
+    "buttonText":   { "type": "string",  "default": "" },
+    "buttonUrl":    { "type": "string",  "default": "" }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css"
+}

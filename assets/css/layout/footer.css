@@ -1,141 +1,128 @@
-/* ===== Footer (dark) ===== */
-/* Full-width footer background */
-.footer-dark { 
-  background:#000068; 
-  color:#f3ece9;  
-  padding-left: 2rem;
-  padding-right: 2rem;}
-.footer-dark {
-  padding-inline: 1rem; /* mobile */
-}
-@media (min-width: 992px){
-  .footer-dark {
-    padding-inline: 3rem; /* desktop */
-  }
-}
-/* 60/40 split */
-.footer-split {
-  display:block;              /* stack by default (mobile) */
-  padding-inline: 1rem;       /* horizontal breathing room; tweak or set to 0 */
-}
-.footer-split__left,
-.footer-split__right { width:100%; }
-
-/* At ≥992px (Bootstrap lg) use exact 60/40 */
-@media (min-width: 992px){
-  .footer-split {
-    display:flex;
-    align-items:flex-start;
-    gap: 2rem;
-    padding-inline: 2rem;     /* a bit more padding on large screens */
-  }
-  .footer-split__left  { flex: 0 0 60%; max-width:60%; }
-  .footer-split__right { flex: 0 0 40%; max-width:40%; }
+/* ====== Footer styles ====== */
+:root{
+  --footer-bg:#2b0f0f;               /* deep brown like the mock */
+  --footer-ink:#ffffff;
+  --footer-muted:rgba(255,255,255,.75);
+  --footer-border:rgba(255,255,255,.12);
+  --footer-max:auto;
 }
 
-/* two link columns on right; collapse to one on small screens */
-.footer-links-grid{
+.site-footer{
+  background: var(--footer-bg);
+  color: var(--footer-ink);
+  font-size: 15px;
+
+}
+.footer__inner{
+  max-width: var(--footer-max);
+  margin-inline:auto;
+  padding: 48px 0px 18px;
+}
+
+/* Top region */
+.footer__top{
   display:grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 1rem 2rem;
+  grid-template-columns: minmax(0,70%) minmax(0,15%) minmax(0,15%);
+  gap: 48px;
+  align-items:start;
+  padding-left:150px;
+  padding-right:150px;
 }
-@media (max-width: 640px){
-  .footer-links-grid{ grid-template-columns: 1fr; }
+.footer__top p{
+  font-size:16px;
+  
 }
-
-/* brand + logo */
-.footer-logo { border-radius:6px; display:block; }
-.footer-brand { margin:0; font-weight:700; letter-spacing:.2px; }
-
-/* responsive text */
-.footer-desc{
-  margin-top:.5rem;
-  max-width: 68ch;
-  line-height:1.7;
-  opacity:.9;
-  font-size: clamp(.95rem, .6vw + .75rem, 1.125rem);
-}
-.footer-copy{ font-size: clamp(.8rem, .35vw + .65rem, .95rem); opacity:.9; }
-
-/* links */
-.footer-links a{
-  display:inline-block;
-  color:#f3ece9;
-  text-decoration:none;
-  padding:.25rem .5rem;
-  margin-inline:-.5rem;
-  border-radius:.5rem;
-  line-height:1.7;
-  font-size: clamp(.95rem, .45vw + .7rem, 1.0625rem);
-  opacity:.9;
-  transition: color .18s ease, background-color .18s ease, opacity .18s ease;
-}
-.footer-links a:hover,
-.footer-links a:focus{
-  color:#fff;
-  background-color: rgba(255,255,255,.10);
-  opacity:1;
-  text-decoration:none;
-}
-.footer-links a:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
-.footer-links ul{ list-style:none; margin:0; padding:0; }
-.footer-links li{ margin:.45rem 0; }
-
-/* divider + socials */
-.footer-sep{ border: 1px solid white !important; }
-.footer-dark .social{
-  display:inline-grid; place-items:center;
-  width:32px; height:32px; border-radius:50%;
-  color:#2a0f0f; background:#f3ece9;
-  font-weight:700; font-size:.8rem;
-  transition: transform .15s ease, background-color .15s ease, color .15s ease;
-}
-.footer-dark .social:hover,
-.footer-dark .social:focus{ transform: translateY(-1px); background:#fff; color:#2a0f0f; }
-
-/* Make the WP columns wrap */
-.footer-cols{
+/* Brand block */
+.brand{
   display:flex;
-  flex-wrap:wrap;
-  gap: 2rem;              /* matches your blockGap */
+  align-items:center;
+  gap:12px;
+  color: var(--footer-ink);
+  text-decoration:none;
+  font-weight:600;
+  font-size: 22px;
+}
+.brand__mark{
+  width:28px; height:28px;
+  border-radius:8px;
+  background: var(--footer-ink);
+  display:inline-block;
+}
+.footer__desc{
+  margin: 18px 0 16px;
+  color: var(--footer-muted);
+  max-width: 560px;
+  line-height: 1.6;
 }
 
-/* Mobile-first: both columns take full width */
-.footer-cols > .wp-block-column{
-  flex: 0 0 100% !important;
-  max-width: 100% !important;
+/* Social row */
+.footer__social{
+  display:flex;
+  gap:5px;
 }
 
-/* Large screens: restore 60/40 split */
-@media (min-width: 992px){            /* adjust breakpoint if you want */
-  .footer-cols > .wp-block-column:first-child{
-    flex: 0 0 60% !important;
-    max-width: 60% !important;
+.social img{
+  width:36px; height:36px;
+}
+.social:hover{ transform: translateY(-1px); opacity:1; background: rgba(255,255,255,.01);}
+.social:focus-visible{ outline:3px solid rgba(255,255,255,.35); outline-offset:3px; }
+
+/* Nav columns */
+.footer__heading{
+  margin:4px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.footer__nav ul{ list-style:none; margin:0; padding:0; }
+.footer__nav li + li{ margin-top: 12px; }
+.footer__nav a{
+  color: var(--footer-muted);
+  text-decoration: none;
+}
+.footer__nav a:hover{ color: var(--footer-ink); }
+
+/* Divider + bottom */
+.footer__rule{
+  border:0;
+  border-top:2px solid #fff;
+  margin: 28px 0 12px;
+}
+.footer__bottom{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  padding: 10px 150px 24px;
+  color: var(--footer-muted);
+}
+
+/* ============================
+   Responsive breakpoints
+   DESKTOP >=1200 (base above)
+   TABLET 1199–768
+   MOBILE 767–375
+   ============================ */
+
+/* Tablet */
+
+@media (max-width:1199px) and (min-width:768px){
+  .footer__top{
+    grid-template-columns: 1fr 1fr;   /* two columns */
+    gap: 40px;
+    padding: 10px 50px 24px;
   }
-  .footer-cols > .wp-block-column:last-child{
-    flex: 0 0 40% !important;
-    max-width: 40% !important;
+  /* keep navs in second column visually: brand first row; navs flow beneath */
+}
+
+/* Mobile */
+@media (max-width:767px){
+  .footer__inner{ padding: 40px 16px 14px !important; }
+  .footer__top{
+    grid-template-columns: 1fr;       /* stack */
+    gap: 28px;
+    padding: 10px 20px 24px;
   }
-}
-
-/* Right-side lists: responsive two-up grid that collapses nicely */
-.footer-links-grid{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(14rem, 1fr)); /* keeps links from squishing */
-  gap: 1rem 2rem;
-}
-
-/* When it gets tight, go one column */
-@media (max-width: 640px){
-  .footer-links-grid{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Remove default list margins from core Navigation so spacing is consistent */
-.footer-dark .wp-block-navigation { margin: 0; }
-.footer-dark .wp-block-navigation__container{
-  margin: 0 !important;
-  padding-inline-start: 0 !important;
-  gap: .5rem; /* tune vertical spacing between links */
+  .brand{ font-size:20px; }
+  .footer__desc{ margin: 12px 0 10px; }
+  .footer__social{ gap:12px; }
+  .footer__bottom{ padding: 10px 20px 24px;}
 }

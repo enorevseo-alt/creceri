@@ -644,3 +644,65 @@ document.addEventListener('DOMContentLoaded', () => {
     syncMode();
   }
 })();
+
+(function () {
+  const gallery = document.querySelector('.about-split__gallery');
+  if (!gallery) return;
+
+  const mqMobile = window.matchMedia('(max-width: 767px)');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null, index = 0;
+
+  const slides = () => Array.from(gallery.children);
+
+  function go(toIndex){
+    const list = slides();
+    if (!list.length) return;
+    index = (toIndex + list.length) % list.length;
+    const el = list[index];
+    const left = el.offsetLeft - gallery.offsetLeft;
+    gallery.scrollTo({ left, behavior: 'smooth' });
+  }
+
+  function start(){
+    if (!mqMobile.matches || reduced.matches) return;
+    stop();
+    timer = setInterval(() => go(index + 1), 3500);
+  }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+
+  // Update index to nearest slide while user scrolls
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    requestAnimationFrame(() => {
+      const list = slides();
+      const mid = gallery.scrollLeft + gallery.clientWidth / 2;
+      let nearest = 0, best = Infinity;
+      list.forEach((el, i) => {
+        const center = el.offsetLeft + el.clientWidth / 2;
+        const dist = Math.abs(center - mid);
+        if (dist < best) { best = dist; nearest = i; }
+      });
+      index = nearest;
+      ticking = false;
+    });
+    ticking = true;
+  };
+
+  // Pause on interaction, resume after
+  ['pointerdown','touchstart','mousedown','mouseenter','focusin'].forEach(ev =>
+    gallery.addEventListener(ev, stop, { passive: true })
+  );
+  ['pointerup','touchend','mouseup','mouseleave','focusout'].forEach(ev =>
+    gallery.addEventListener(ev, () => setTimeout(start, 2000), { passive: true })
+  );
+  gallery.addEventListener('scroll', onScroll, { passive: true });
+
+  function setup(){
+    if (mqMobile.matches) start(); else stop();
+  }
+  mqMobile.addEventListener('change', setup);
+  reduced.addEventListener('change', setup);
+  setup();
+})();

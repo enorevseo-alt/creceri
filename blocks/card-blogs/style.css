@@ -1,0 +1,122 @@
+/* Tokens */
+:root{
+  --wrap-max: 1120px;
+  --pad-x: 24px;
+  --ink: #2b2b2b;
+  --muted:#5f5f5f;
+  --brand:#962E2A;
+  --panel:#ffffff;
+  --radius:18px;
+  --shadow:0 8px 30px rgba(31,41,55,.06);
+}
+
+/* Section shell */
+.about-split{
+  padding: 40px var(--pad-x) 64px;
+  color: var(--ink);
+}
+.about-split__inner{
+  max-width: var(--wrap-max);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr; /* desktop default */
+  gap: 40px;
+  align-items: center;
+}
+
+/* Gallery mosaic */
+.about-split__gallery{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 160px;
+  gap: 18px;
+}
+.tile{
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: var(--shadow);
+}
+
+/* Place tiles to match the layout in your image */
+.tile-a{ grid-column:1; grid-row:1; }              /* top-left (landscape)   */
+.tile-b{ grid-column:2; grid-row:1 / span 2; }     /* top-right (large)      */
+.tile-c{ grid-column:1; grid-row:2 / span 2; }     /* bottom-left (large)    */
+.tile-d{ grid-column:2; grid-row:3; }              /* bottom-right (land.)   */
+
+/* Placeholder gradients — swap with your images if you like */
+.tile-a{
+  background-image: radial-gradient(40% 50% at 70% 40%, #b7473f, transparent 60%),
+                    linear-gradient(135deg, #fde1d2, #f6b99b);
+}
+.tile-b{
+  background-image: radial-gradient(45% 60% at 50% 50%, #b34b42, #7aa8c2 65%, #f3c0ab 100%);
+}
+.tile-c{
+  background-image: radial-gradient(80% 80% at 10% 100%, #b6463d, transparent 50%),
+                    radial-gradient(70% 60% at 100% 40%, #7aa8c2, transparent 55%),
+                    linear-gradient(135deg, #f8eae2, #f3c1ad);
+}
+.tile-d{
+  background-image: radial-gradient(30% 40% at 30% 40%, #b34b42, transparent 60%),
+                    radial-gradient(25% 35% at 70% 25%, #7aa8c2, transparent 60%),
+                    linear-gradient(135deg, #f8d7c6, #f1b099);
+}
+
+/* Content */
+.about-split__content h2{
+  margin: 0 0 10px;
+  color: var(--brand);
+  font-size: clamp(26px, 3.2vw, 34px);
+  letter-spacing: .2px;
+}
+.about-split__content p{
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.btn-primary{
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(150,46,42,.25);
+}
+
+/* -------------------------
+   Responsive breakpoints
+   DESKTOP >=1200 (base above)
+   TABLET 1199–768
+   MOBILE 767–375
+   ------------------------- */
+
+/* TABLET */
+@media (max-width: 1199px) and (min-width: 768px){
+  .about-split__inner{
+    grid-template-columns: 1fr;  /* stack */
+    gap: 28px;
+  }
+  .about-split__gallery{ grid-auto-rows: 150px; }
+  .about-split__content{ max-width: 680px; }
+}
+
+/* MOBILE */
+@media (max-width: 767px){
+  .about-split{ padding: 28px var(--pad-x) 48px; }
+  .about-split__inner{
+    grid-template-columns: 1fr; /* stack */
+    gap: 22px;
+  }
+  /* Keep mosaic but make tiles bigger and touch-friendly */
+  .about-split__gallery{
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 120px;
+    gap: 12px;
+  }
+  .tile{ border-radius: 16px; }
+  .about-split__content h2{ font-size: 26px; }
+}
