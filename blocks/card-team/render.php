@@ -1,36 +1,62 @@
-<section class="about-split" aria-labelledby="who-title">
-  <div class="about-split__inner">
-    <!-- Left: mosaic gallery -->
+<?php
+/**
+ * Dynamic render: About · Split (Mosaic + Content)
+ */
+
+$title     = isset($attributes['title']) ? $attributes['title'] : 'Who We Are?';
+$content   = isset($attributes['content']) ? $attributes['content'] : '';
+$ctaText   = isset($attributes['ctaText']) ? $attributes['ctaText'] : '';
+$ctaUrl    = isset($attributes['ctaUrl']) ? $attributes['ctaUrl'] : '';
+$btnClass  = isset($attributes['btnClass']) ? $attributes['btnClass'] : 'btn-primary';
+$gallery   = (isset($attributes['gallery']) && is_array($attributes['gallery'])) ? $attributes['gallery'] : array();
+$reverse   = !empty($attributes['reverse']);
+$sectionId = !empty($attributes['sectionId']) ? $attributes['sectionId'] : 'who-title';
+
+$tiles = array('tile-a','tile-b','tile-c','tile-d');
+
+/** allow simple formatting in content */
+$allowed_html = array(
+  'a' => array('href'=>array(),'title'=>array(),'target'=>array(),'rel'=>array()),
+  'br' => array(), 'em' => array(), 'strong' => array(), 'b' => array(), 'i' => array(),
+  'span' => array(), 'p' => array(), 'ul'=>array(), 'ol'=>array(), 'li'=>array()
+);
+?>
+<section class="about-split" aria-labelledby="<?php echo esc_attr($sectionId); ?>">
+  <div class="about-split__inner<?php echo $reverse ? ' is-reversed' : ''; ?>">
+    <!-- Left/Right: mosaic gallery -->
     <div class="about-split__gallery">
-      <figure class="tile tile-a">
-        <img src="/wp-content/themes/allinclusive2.0/blocks/card-team/asset/team-1.jpg" alt="">
-      </figure>
-
-      <figure class="tile tile-b">
-        <img src="/wp-content/themes/allinclusive2.0/blocks/card-team/asset/team-2.jpg" alt="">
-      </figure>
-
-      <figure class="tile tile-c">
-        <img src="/wp-content/themes/allinclusive2.0/blocks/card-team/asset/team-3.jpg" alt="">
-      </figure>
-
-      <figure class="tile tile-d">
-        <img src="/wp-content/themes/allinclusive2.0/blocks/card-team/asset/team-4.jpg" alt="">
-      </figure>
+      <?php
+      for ($i = 0; $i < 4; $i++) {
+        if (empty($gallery[$i]['src'])) { continue; }
+        $src  = $gallery[$i]['src'];
+        $alt  = !empty($gallery[$i]['alt']) ? $gallery[$i]['alt'] : '';
+        $tcls = $tiles[$i];
+        ?>
+        <figure class="tile <?php echo esc_attr($tcls); ?>">
+          <img src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt); ?>" loading="lazy" decoding="async" />
+        </figure>
+        <?php
+      }
+      ?>
     </div>
 
-    <!-- Right: content -->
+    <!-- Content -->
     <div class="about-split__content">
-      <h2 id="who-title">Who We Are?</h2>
-      <p>
-        Creceri is a knowledge hub empowering SMEs to thrive through technology, insights,
-        and real-world stories. We deliver expert guides, actionable strategies,
-        and inspiring case studies. Our mission is growth. We simplify digital transformation.
-        Your success is our driving purpose.
-      </p>
-      <a class="btn-primary" href="#">Learn More</a>
+      <?php if ($title) : ?>
+        <h2 id="<?php echo esc_attr($sectionId); ?>"><?php echo esc_html($title); ?></h2>
+      <?php endif; ?>
+
+      <?php if ($content) : ?>
+        <div class="about-split__text">
+          <?php echo wp_kses($content, $allowed_html); ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($ctaText && $ctaUrl) : ?>
+        <a class="<?php echo esc_attr($btnClass); ?>" href="<?php echo esc_url($ctaUrl); ?>">
+          <?php echo esc_html($ctaText); ?>
+        </a>
+      <?php endif; ?>
     </div>
   </div>
 </section>
-<script>
-</script>

@@ -1,24 +1,107 @@
 {
   "apiVersion": 3,
   "name": "child/card-blogs",
-  "title": "Section · Banner",
+  "title": "Tek Stories",
   "category": "widgets",
-  "description": "Hero/banner with background image, title, text, and optional button.",
+  "description": "Stories section with a featured item, compact list, intro text, CTA, and image overlays.",
   "icon": "screenoptions",
   "supports": {
     "html": false,
-    "inserter": false,
+    "inserter": true,
     "align": ["wide", "full"]
   },
   "attributes": {
-    "title":        { "type": "string",  "default": "" },
-    "img":          { "type": "string",  "default": "" },
-    "description":  { "type": "string",  "default": "" },
-    "banner_size":  { "type": "string",  "default": "small" },
-    "showButton":   { "type": "boolean", "default": true },
-    "buttonText":   { "type": "string",  "default": "" },
-    "buttonUrl":    { "type": "string",  "default": "" }
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string" },
+          "heading": { "type": "string" },
+          "text": { "type": "string" },
+          "url": { "type": "string" },
+          "link": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" }
+            }
+          },
+          "overlay": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "color": { "type": "string" },
+              "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+              "size": { "type": "number", "minimum": 0, "maximum": 100 },
+              "position": { "type": "string", "enum": ["top", "bottom"] }
+            }
+          }
+        }
+      }
+    },
+
+    "title": { "type": "string", "default": "Tek Stories" },
+    "intro": { "type": "string", "default": "" },
+    "ctaText": { "type": "string", "default": "Browse All Stories" },
+    "ctaUrl": { "type": "string", "default": "#" },
+    "showReadLink": { "type": "boolean", "default": true },
+    "readLinkText": { "type": "string", "default": "Read More" },
+    "data_count": { "type": "number", "default": 4 },
+    "animation": { "type": "string", "default": "Off", "enum": ["On", "Off"] },
+
+    "ctaBgColor": { "type": "string", "default": "#962E2A" },
+    "sectionBgColor": { "type": "string", "default": "" },
+
+    "overlayEnabled": { "type": "boolean", "default": true },
+    "overlayColor": { "type": "string", "default": "#000000" },
+    "overlayOpacity": { "type": "number", "default": 0.55, "minimum": 0, "maximum": 1 },
+    "overlaySize": { "type": "number", "default": 60, "minimum": 0, "maximum": 100 },
+    "overlayPosition": { "type": "string", "default": "bottom", "enum": ["top", "bottom"] },
+    "imagePosition": { "type": "string", "default": "center" }
   },
   "render": "file:./render.php",
-  "style":  "file:./style.css"
+  "style": "file:./style.css",
+  "example": {
+    "attributes": {
+      "title": "Tek Stories",
+      "intro": "Fresh takes from our team.",
+      "ctaText": "Browse All Stories",
+      "ctaUrl": "/stories/",
+      "showReadLink": true,
+      "readLinkText": "Read More",
+      "data_count": 4,
+      "animation": "Off",
+      "ctaBgColor": "#962E2A",
+      "sectionBgColor": "#FAFAFA",
+      "overlayEnabled": true,
+      "overlayColor": "#000000",
+      "overlayOpacity": 0.55,
+      "overlaySize": 60,
+      "overlayPosition": "bottom",
+      "imagePosition": "center",
+      "items": [
+        {
+          "image": "https://example.com/feature.jpg",
+          "heading": "Featured Story",
+          "text": "A quick intro.",
+          "link": { "url": "/featured" },
+          "overlay": { "enabled": true, "color": "#962E2A", "opacity": 0.6, "size": 70, "position": "top" }
+        },
+        {
+          "image": "https://example.com/1.jpg",
+          "heading": "Story One",
+          "text": "Short description",
+          "url": "/one",
+          "overlay": { "enabled": false }
+        },
+        {
+          "image": "https://example.com/2.jpg",
+          "heading": "Story Two",
+          "text": "Short description",
+          "url": "/two"
+        }
+      ]
+    }
+  }
 }
