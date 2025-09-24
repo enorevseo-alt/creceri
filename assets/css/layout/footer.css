@@ -1,0 +1,128 @@
+/* ====== Footer styles ====== */
+:root{
+  --footer-bg:#2b0f0f;               /* deep brown like the mock */
+  --footer-ink:#ffffff;
+  --footer-muted:rgba(255,255,255,.75);
+  --footer-border:rgba(255,255,255,.12);
+  --footer-max:auto;
+}
+
+.site-footer{
+  background: var(--footer-bg);
+  color: var(--footer-ink);
+  font-size: 15px;
+
+}
+.footer__inner{
+  max-width: var(--footer-max);
+  margin-inline:auto;
+  padding: 48px 0px 18px;
+}
+
+/* Top region */
+.footer__top{
+  display:grid;
+  grid-template-columns: minmax(0,70%) minmax(0,15%) minmax(0,15%);
+  gap: 48px;
+  align-items:start;
+  padding-left:150px;
+  padding-right:150px;
+}
+.footer__top p{
+  font-size:16px;
+  
+}
+/* Brand block */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color: var(--footer-ink);
+  text-decoration:none;
+  font-weight:600;
+  font-size: 22px;
+}
+.brand__mark{
+  width:28px; height:28px;
+  border-radius:8px;
+  background: var(--footer-ink);
+  display:inline-block;
+}
+.footer__desc{
+  margin: 18px 0 16px;
+  color: var(--footer-muted);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* Social row */
+.footer__social{
+  display:flex;
+  gap:5px;
+}
+
+.social img{
+  width:36px; height:36px;
+}
+.social:hover{ transform: translateY(-1px); opacity:1; background: rgba(255,255,255,.01);}
+.social:focus-visible{ outline:3px solid rgba(255,255,255,.35); outline-offset:3px; }
+
+/* Nav columns */
+.footer__heading{
+  margin:4px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.footer__nav ul{ list-style:none; margin:0; padding:0; }
+.footer__nav li + li{ margin-top: 12px; }
+.footer__nav a{
+  color: var(--footer-muted);
+  text-decoration: none;
+}
+.footer__nav a:hover{ color: var(--footer-ink); }
+
+/* Divider + bottom */
+.footer__rule{
+  border:0;
+  border-top:2px solid #fff;
+  margin: 28px 0 12px;
+}
+.footer__bottom{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  padding: 10px 150px 24px;
+  color: var(--footer-muted);
+}
+
+/* ============================
+   Responsive breakpoints
+   DESKTOP >=1200 (base above)
+   TABLET 1199–768
+   MOBILE 767–375
+   ============================ */
+
+/* Tablet */
+
+@media (max-width:1199px) and (min-width:768px){
+  .footer__top{
+    grid-template-columns: 1fr 1fr;   /* two columns */
+    gap: 40px;
+    padding: 10px 50px 24px;
+  }
+  /* keep navs in second column visually: brand first row; navs flow beneath */
+}
+
+/* Mobile */
+@media (max-width:767px){
+  .footer__inner{ padding: 40px 16px 14px !important; }
+  .footer__top{
+    grid-template-columns: 1fr;       /* stack */
+    gap: 28px;
+    padding: 10px 20px 24px;
+  }
+  .brand{ font-size:20px; }
+  .footer__desc{ margin: 12px 0 10px; }
+  .footer__social{ gap:12px; }
+  .footer__bottom{ padding: 10px 20px 24px;}
+}

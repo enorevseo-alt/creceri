@@ -1,0 +1,23 @@
+{
+  "apiVersion": 2,
+  "name": "creceri/sample-card",
+  "title": "Sample Card",
+  "category": "design",
+  "icon": "id",
+  "description": "A simple card with image, title, text, and button.",
+  "keywords": ["sample-card", "sample card", "card"],
+  "supports": { "align": ["wide", "full"], "html": false },
+  "attributes": {
+    "title": { "type": "string", "source": "html", "selector": ".sample-card__title" },
+    "text": { "type": "string", "source": "html", "selector": ".sample-card__text" },
+    "imageUrl": { "type": "string", "default": "" },
+    "imageAlt": { "type": "string", "default": "" },
+    "buttonText": { "type": "string", "source": "html", "selector": ".sample-card__button" },
+    "buttonUrl": { "type": "string", "default": "" },
+    "backgroundColor": { "type": "string", "default": "#ffffff" }
+  },
+  "render": "file:./render.php",
+  "editorScript": "sample-editor",
+  "style": "sample-view",
+  "editorStyle": "sample-editor-style"
+}

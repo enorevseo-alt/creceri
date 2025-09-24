@@ -1,0 +1,245 @@
+/* ====== Tokens ====== */
+:root{
+  --ink: #1f2328;
+  --muted: #6b6f75;
+  --rose-500: #962E2A;        /* primary */
+  --rose-100: #F5E8E6;        /* light tint for borders */
+  --card: #ffffff;
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(149, 46, 42, .08),
+            0 2px 6px rgba(17, 24, 39, .06);
+}
+
+/* ====== Section wrapper / header ====== */
+.wrap{
+  margin-inline: auto;
+  padding: 30px 200px 36px;
+  background: linear-gradient(to top, #E9B79699 0%, #ffffff 45%);
+}
+
+.stories-header{ margin-bottom: 10px; }
+.stories-title{
+  margin: 0 0 4px;
+  line-height: 1.15;
+  color: var(--rose-500);
+  letter-spacing: .2px;
+}
+
+.stories-intro{ margin-bottom: 22px; }
+
+.stories-sub{
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 95ch;
+}
+
+/* Buttons */
+.btn{
+  display: inline-block;
+  padding: .7rem 1rem;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 6px 14px rgba(150,46,42,.25);
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 18px rgba(150,46,42,.28); }
+.btn:active{ transform: translateY(0); }
+
+/* ====== Grid (50/50 columns) ====== */
+.grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* 50/50 */
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* ====== Left feature card ====== */
+.feature{
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.feature-media{
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  min-height: 260px;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.feature-body{ padding: 18px 18px 16px; }
+
+.feature-title{
+  margin: 0 0 6px;
+  color: var(--rose-500);
+}
+
+.feature-text{
+  margin: 0 0 12px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.feature-actions{ margin-top: 4px; }
+
+/* ====== Right compact list ====== */
+.list{
+  display: grid;
+  gap: 16px;                    /* spacing between cards */
+}
+
+.item{
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  align-items: center;
+  gap: 14px;
+  border-radius: var(--radius);
+  padding: 12px;            /* prevent background “bleed” in gaps */
+  margin-top:-40px;
+}
+
+.thumb{
+  width: 100%;
+  aspect-ratio: 25 / 18;        /* ≈ 250x180 */
+  height: auto;
+  border-radius: 12px;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.item-data{ padding-right: 8px; }
+
+.item-data h4{
+  margin: 10px 0 6px;
+  color: var(--rose-500);
+}
+
+.item-data p{
+  margin: 0 0 8px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* ====== Links / chevron ====== */
+.link-btn{
+  --c: var(--rose-500);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  color: var(--c);
+  text-decoration: none;
+  border: 1px solid var(--c);
+  padding: 5px;
+  border-radius: 20px;
+  width: 130px;
+}
+.link-btn .chev{
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform .18s ease;
+}
+.link-btn:hover .chev{ transform: translateX(3px); }
+.link-btn:hover{ text-decoration: none; }
+
+/* === Fix “violet” visited link color & mobile tap highlight inside this block === */
+.wrap a:link,
+.wrap a:visited { color: inherit; }             /* inherit text color by default */
+.wrap .link-btn,
+.wrap .link-btn:link,
+.wrap .link-btn:visited {                       /* keep brand color for buttons */
+  color: var(--rose-500);
+  border-color: var(--rose-500);
+}
+.wrap .feature-actions a,
+.wrap .feature-actions a:visited {
+  color: var(--rose-500);
+}
+.wrap a:focus { outline: none; }
+.wrap a:focus-visible {
+  outline: 2px solid var(--rose-500);
+  outline-offset: 2px;
+}
+.wrap a,
+.wrap .link-btn{ -webkit-tap-highlight-color: transparent; }
+
+/* ====== Tablet ====== */
+@media (max-width: 1600px){
+  .wrap{
+    padding: 30px 100px 36px;
+    background: linear-gradient(to top, #E9B79699 0%, #ffffff 45%);
+  }
+  .item{
+    margin-top:-30px;
+  }
+}
+@media (max-width: 1350px){
+  .wrap{
+    padding: 30px 50px 36px;
+    background: linear-gradient(to top, #E9B79699 0%, #ffffff 45%);
+  }
+}
+@media (max-width: 1100px){
+  .grid{ grid-template-columns: 1fr; } /* feature on top */
+  .stories-intro{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+  .wrap{ padding: 50px 50px 36px; }
+  .item{
+    grid-template-columns: 190px 1fr;
+    gap: 8px;
+    padding: 10px;
+  }
+}
+
+/* ====== Mobile (feature full width + swipe list + CTA pinned) ====== */
+@media (max-width: 700px){
+  .wrap{ padding: 20px 16px 28px; position: relative; }
+
+  /* Pin CTA to top-right; keep title from overlapping it */
+  .stories-intro{ display: block !important; }     /* override inline flex */
+  .stories-actions{
+    position: absolute;
+    top: 22px;              /* aligns with wrap top padding */
+    right: 16px;            /* aligns with wrap side padding */
+    margin: 0;
+    z-index: 2;
+  }
+  .stories-title{ padding-right: min(40vw, 12rem); }
+
+  .feature-media{ aspect-ratio: 16 / 10; min-height: 240px; }
+
+  .list{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 85%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 4px 10px;
+    gap: 14px;
+  }
+  .list > .item{
+    grid-template-columns: 1fr;   /* stack thumb over text */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .list::-webkit-scrollbar{ height: 0; }
+  
+}
+
+/* narrow phones */
+@media (max-width: 380px){
+  .wrap { padding-top: 50px; }
+  .list{ grid-auto-columns: 92%; }
+}

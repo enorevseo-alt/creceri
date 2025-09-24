@@ -1,0 +1,243 @@
+{
+    "banners": [
+        {
+            "title": "Discover France: Timeless Charm, Bold Flavors, and Effortless Elegance",
+            "description": "France has a way of drawing people in. It’s not just the landmarks or the food, though those help. It’s the rhythm of life—long lunches, sidewalk cafés, and scenic drives past sunflower fields. Whether you're heading to Paris for the first time or planning a countryside escape, France travel tours can make the experience seamless and memorable. \n\n You won’t need to plan every detail. Just show up, explore, and let the country work its charm.",
+            "img": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/france-banner.jpg",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Budget-Friendly France Tours That Don’t Cut Corners",
+            "description": "You don’t need a big budget to see the best of France. There are affordable options if you know where to look. \n\n Multi-city group tours start around $499 and often cover Paris, Lyon, and other popular spots. Self-guided packages with train passes and hostel stays give you more freedom and still save money. Short day trips to Versailles or the French Riviera are easy to book and don’t cost much.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Why Choose a France Travel Tour?",
+            "description": "There’s something about France that sticks with you. Maybe it’s the food, or the countryside, or the quiet moment on a riverboat at dusk. Booking a tour lets you focus on those moments instead of logistics. \n\n It’s a simple way to see more and stress less. Whether it’s your first time or your fifth,there’s always something new to discover.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Plan Less, Enjoy More. Discover France Today",
+            "description": "France is timeless, effortless, and full of beautiful contrasts. Let a curated travel tour guide you through the heart of its culture, cuisine, and landscapes. \n\n Discover France today and turn every moment into a memory.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Top 10 Places to Visit in France That Tell Their Own Story",
+            "intro":"France isn’t short on must-see places. From famous cities to hidden gems, here are ten destinations worth adding to your itinerary.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/carousel-top-10/paris.jpg",
+                    "imageAlt":"Paris",
+                    "heading":"Paris",
+                    "text":"Eiffel Tower, Louvre, Seine River"
+                },
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/carousel-top-10/nice.jpg",
+                    "imageAlt":"Nice",
+                    "heading":"Nice",
+                    "text":"French Riviera, beaches, old town"
+                },
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/carousel-top-10/lyon.jpg",
+                    "imageAlt":"Lyon",
+                    "heading":"Lyon",
+                    "text":"Culinary capital, Roman ruins"
+                },
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/carousel-top-10/bordeaux.jpg",
+                    "imageAlt":"Bordeaux",
+                    "heading":"Bordeaux",
+                    "text":"Wine tasting, riverside charm"
+                },
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        }
+    ],
+    "card-img": {
+        "title": "Top French Dishes You’ll Want to Eat Twice",
+        "intro": "France’s culinary legacy is one of its greatest treasures. Each region offers a unique flavor profile, from the buttery pastries of Paris to the sun-soaked herbs of Provence. If you’re wondering where to start, here are five iconic dishes that capture the heart of French cuisine.",
+        "data_count": "5",
+        "ctaText": "",
+        "ctaUrl": "",
+        "showReadLink": true,
+        "readLinkText": "",
+        "items": [
+            {
+                "image": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/card-img-top-french/croissant.jpg",
+                "heading": "Croissant",
+                "text": "Buttery, flaky pastry perfect for breakfast or a mid-morning café stop."
+            },
+            {
+                "image": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/card-img-top-french/coq-au-vin.png",
+                "heading": "Coq au Vin",
+                "text": "Chicken braised in red wine with mushrooms and herbs—a Burgundy classic."
+            },
+            {
+                "image": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/card-img-top-french/bouillabaisse.png",
+                "heading": "Bouillabaisse",
+                "text": "Seafood stew from Marseille, infused with saffron and Provençal flavors."
+            },
+            {
+                "image": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/card-img-top-french/ratatouille.png",
+                "heading": "Ratatouille",
+                "text": "Hearty vegetable dish from Provence, often served warm with rustic bread."
+            },
+            {
+                "image": "/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/card-img-top-french/creme-brulee.jpg",
+                "heading": "Crème Brûlée",
+                "text": "Silky vanilla custard topped with caramelized sugar—crack it and savor the crunch."
+            }
+        ]
+    },
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Experiences That Make Traveling in France Unforgettable",
+            "description":"It’s not just about where you go, but what you do once you’re there. France is full of small, unforgettable moments.",
+            "img":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/img-with-content/1.jpg",
+            "items":[
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/boat.png",
+                "title":"Cruise on the Seine or Rhône",
+                "text":"Float past Paris landmarks at sunset or glide through vineyards along the Rhône. It’s sightseeing without the rush."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/castle.png",
+                "title":"Explore Castles and Villages",
+                "text":"Wander through walled towns like Carcassonne or explore grand châteaux in the Loire Valley. It’s like stepping into a painting."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/wine.png",
+                "title":"Join a Wine-Tasting Tour",
+                "text":"A vineyard visit in Bordeaux or Champagne isn’t just a tasting—it’s a walk through tradition, with stories in every pour."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/hike.png",
+                "title":"Ski the Alps or Hike Coastal Trails",
+                "text":"France offers both snowy peaks and sunny cliffside paths. You don’t have to choose one over the other."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/chef.png",
+                "title":"Take a Cooking Class in Lyon",
+                "text":"Learn how to make a Provençal dish from scratch, then enjoy it with local wine. It’s hands-on and delicious."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Smart Travel Tips for a Smooth French Adventure",
+            "description":"Before you pack your bags, keep a few things in mind:",
+            "img":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/img-with-content/3.jpg",
+            "items":[
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/calendar.png",
+                "title":"Best Time to Go",
+                "text":"Late spring or early fall. You’ll get nice weather without the summer crowds."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/money.png",
+                "title":"Saving Money",
+                "text":"Eat set lunch menus, stay near but not inside city centers, and get museum passes."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/bus.png",
+                "title":"Getting Around",
+                "text":"High-speed trains are fast and scenic. In cities, walk or use the metro."
+                },
+                {
+                "icon":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/icons/shield.png",
+                "title":"Staying Safe",
+                "text":"France is generally safe, but keep an eye on your belongings, especially in tourist areas."
+                }
+            ]
+        }
+    ],
+    "col-text-cards": [
+        {
+            "alignTextCards":"right",
+            "bgMode":"plain",
+            "layoutMode":"single",
+            "headline":"",
+            "subhead":"",
+            "features": [
+                {
+                    "icon": "🍷",
+                    "title": "Food & Wine",
+                    "desc": "Start the day with a fresh croissant. Try Coq au Vin or Ratatouille for dinner. End with Crème Brûlée or a cheese plate. There’s no wrong answer."
+                },
+                {
+                    "icon": "🎨",
+                    "title": "Art, Music & Heritage",
+                    "desc": "Walk through the Louvre, stop by a jazz bar, or browse street art in Montmartre. You’ll find culture in quiet courtyards and busy museums alike."
+                },
+                {
+                    "icon": "🤝",
+                    "title": "Customs & Etiquette",
+                    "desc": "A simple “Bonjour” goes a long way. Take your time at meals, dress smartly at churches and museums, and enjoy the slower pace. Locals appreciate effort and kindness."
+                }
+            ],
+            "cards":[
+                {
+                    "image":"/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/france/img-with-content/1.jpg"
+                }
+            ]
+        }
+    ]
+}

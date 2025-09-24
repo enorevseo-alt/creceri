@@ -1,0 +1,89 @@
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a class="brand" href="#">
+      <span class="brand-badge" aria-hidden="true"></span>
+      <span>Logo</span>
+    </a>
+
+    <!-- Hidden checkbox drives the main menu (burger) -->
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-hidden="true">
+
+    <!-- Navigation -->
+    <nav id="primary-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link active" href="#">Home</a></li>
+        <li><a class="nav-link" href="#">About</a></li>
+
+        <!-- Dropdown: checkbox + label (no JS needed) -->
+        <li class="dropdown">
+          <input class="sub-toggle" type="checkbox" id="submenu-gi" aria-hidden="true">
+          <label class="nav-button" for="submenu-gi">
+            Guides &amp; Insights
+            <svg class="caret" viewBox="0 0 10 10" aria-hidden="true">
+              <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </label>
+          <ul class="submenu" role="menu" aria-label="Guides &amp; Insights">
+            <li role="none"><a role="menuitem" href="#">Tutorials</a></li>
+            <li role="none"><a role="menuitem" href="#">Case Studies</a></li>
+            <li role="none"><a role="menuitem" href="#">Best Practices</a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav-link" href="#">Tek Stories</a></li>
+        <li><a class="nav-link" href="#">What’s New</a></li>
+      </ul>
+    </nav>
+
+    <!-- Burger (label toggles the nav-toggle; same icon open/close) -->
+    <label class="menu-toggle" for="nav-toggle" aria-controls="primary-nav" role="button" tabindex="0">
+      <svg class="icon icon-menu" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="sr-only">Toggle menu</span>
+    </label>
+  </div>
+</header>
+<script>
+(function(){
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  // Keep body offset equal to header height (handles responsive + menu open)
+  function setHeaderHeight() {
+    const h = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+
+  // Solid header when scrolled
+  function onScroll() {
+    header.classList.toggle('is-scrolled', window.scrollY > 2);
+  }
+
+  // Hook up mobile nav checkbox if present
+  const navToggle = header.querySelector('.nav-toggle'); // <input type="checkbox" class="nav-toggle">
+  function syncOpenState() {
+    if (!navToggle) return;
+    header.classList.toggle('is-open', navToggle.checked);
+    setHeaderHeight(); // header grows when nav opens
+  }
+
+  // Init
+  setHeaderHeight();
+  onScroll();
+
+  // Listeners
+  window.addEventListener('resize', setHeaderHeight);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  if (navToggle) {
+    navToggle.addEventListener('change', syncOpenState);
+    syncOpenState();
+  }
+
+  // If your menu is opened by a label (burger), ensure the label is linked to the checkbox:
+  // <label for="your-nav-toggle-id" class="menu-toggle">...</label>
+})();
+</script>
+
+

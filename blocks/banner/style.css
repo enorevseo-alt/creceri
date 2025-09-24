@@ -1,0 +1,106 @@
+/* Banner Hero — cleaned responsive styles */
+
+/* Base section */
+.hero{
+  background:
+    radial-gradient(1200px 600px at 20% 15%, var(--bg-left, #cee6f2) 0%, rgba(238,247,252,0) 60%),
+    linear-gradient(90deg, #f1f7fb 0%, var(--bg-right, #e3867d) 100%);
+  position: relative;
+  overflow: visible; /* allow image to bleed on large screens */
+  margin-bottom: 0; /* remove extra gap below the banner section */
+}
+
+.hero__inner{
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr; /* copy | art by default */
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* Copy */
+.hero__brand{ display:block; font-size: clamp(2.5rem, 6vw, 80px) !important; letter-spacing:-.02em; color: var(--brand, #8a3a33); line-height:1.05; margin-bottom:.12em; }
+.hero__line{ display:block; font-weight:600; font-size: clamp(1.4rem, 2.8vw, 50px)  !important; color: var(--brand, #8a3a33); line-height:1.15; }
+.hero__lead{ margin:.85rem auto 1.4rem; font-size: clamp(.95rem, 1vw, 40rem)  !important; color: var(--text, #4b2925); }
+.hero h1{ margin: 0; }
+/* Avoid stray bottom margin from the last element in the copy block */
+.hero__copy > :last-child{ margin-bottom: 0 !important; }
+.hero__copy{padding-left:20px;}
+/* Button (kept minimal; your global button styles may extend these) */
+.btn{ display:inline-block; text-decoration:none; border-radius:14px; padding:.8rem 1.4rem; font-weight:650; line-height:1; }
+.btn-custom{ background: var(--brand, #8a3a33) !important; color:#fff; min-width: 180px;}
+
+/* Artwork */
+.hero__art{ position: relative; }
+/* Prevent right overflow: scale by width, keep aspect */
+.hero__art img{
+  display:block;
+  width: min(100%, clamp(520px, 45vw, 820px));
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.08));
+  border-radius: 0;
+  transform: translateY(clamp(24px, 6vw, 50px));
+}
+
+/* Keep .hero__line to one line close to 1024px */
+@media (min-width: 992px) and (max-width: 1024px){
+  .hero__line{ white-space: nowrap; }
+  .hero__line br{ display:none; }
+}
+
+/* Desktop & Laptop (>=1025px): two columns, image bleeds beyond bottom */
+@media (min-width: 1025px){
+  .hero{ overflow: visible; }
+  .hero__inner{ grid-template-columns: 1.05fr 1fr; }
+  .hero__art{ align-self: end; justify-self: end; }
+  .btn-custom{ padding: .95rem 1.8rem;background: var(--brand, #8a3a33); color:#fff; min-width: 180px; }
+  .hero__copy{padding-left:100px;}
+}
+
+/* Tablet (701–1024px): two columns, image centered in column 2, no bleed */
+@media (min-width: 701px) and (max-width: 1024px){
+  .hero__inner{ grid-template-columns: 1fr 1fr; }
+  .hero__copy{ grid-column: 1; margin-left:40px !important;}
+  .hero__line br{ display:none; }
+  .hero__art{ grid-column: 2; justify-self: center; align-self: center; }
+  .hero__art img{ width: min(100%, clamp(420px, 42vw, 620px)); height:auto; transform: translateY(0); margin: 0 auto; }
+  .btn-custom{ padding: .95rem 1.8rem;background: var(--brand, #8a3a33); color:#fff; min-width: 180px; }
+}
+
+/* Mobile medium (451–700px): single column, image first top-center, no bleed */
+@media (min-width: 451px) and (max-width: 700px){
+  .hero__inner{ grid-template-columns: 1fr; }
+  .hero__line br{ display:none; }
+  .hero__art{ order: 1; justify-self: center; text-align: center; }
+  .hero__copy{ order: 2; text-align: center; }
+  .hero__art img{ width: min(100%, clamp(300px, 70vw, 520px)); height:auto; transform: translateY(0); margin: 0 auto; }
+}
+
+/* Mobile small (<=450px): text top-center, image bottom-center of screen */
+@media (max-width: 450px){
+  .hero{ min-height: 60vh; }
+  .hero__inner{ grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .hero__copy{ order: 2; text-align: center; }
+  .hero__line br{ display:none; }
+  .hero__art{ order: 1; justify-self: center; align-self: end; text-align: center; }
+  .hero__art img{ width: min(100%, clamp(240px, 80vw, 460px)); height:auto; transform: translateY(0); margin: 0 auto; }
+  
+  .btn-custom{ padding: .95rem 1.8rem;background: var(--brand, #8a3a33) !important; color:#fff; min-width: 180px; }
+}
+
+/* Remove padding at and below 701px width */
+@media (max-width: 701px){
+  .hero{ padding: 0 !important; }
+  .hero__inner{ padding: 0 !important; }
+  .hero__line br{ display:none; }
+  .hero__copy, .hero__art{ padding: 0 !important; }
+}
+
+/* Tablet & Mobile: clamp down any bottom padding/margin that could create a gap */
+@media (max-width: 1024px){
+  
+  .hero__line br{ display:none; }
+  .hero{ padding-bottom: 0 !important; margin-bottom: 0 !important; }
+  .hero__inner{ padding-bottom: 0 !important; }
+}

@@ -1,0 +1,41 @@
+<?php
+// vite-ttf-child-creceri/functions.php
+// Register the "FAQs" block and its assets.
+add_action( 'init', function () {
+  $dir_path = get_stylesheet_directory() . '/blocks/sample-card';
+  $dir_uri  = get_stylesheet_directory_uri() . '/blocks/sample-card';
+
+  // Register styles and script handles referenced by block.json.
+  wp_register_style(
+      'sample-style',
+      $dir_uri . '/style.css',
+      array(),
+      '1.0'
+  );
+
+  wp_register_style(
+      'sample-editor-style',
+      $dir_uri . '/view.css',
+      array( 'wp-edit-blocks' ),
+      '1.0'
+  );
+
+  wp_register_script(
+      'sample-editor',
+      $dir_uri . '/index.js',
+      array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+      '1.0',
+      true
+  );
+
+    wp_register_script(
+    'sample-view',
+    $dir_uri . '/index.js',
+    [],
+    '1.0',
+    true
+  );
+
+  // Register the block from its metadata (reads block.json + render.php).
+  register_block_type( $dir_path );
+});

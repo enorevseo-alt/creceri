@@ -1,0 +1,50 @@
+{
+  "apiVersion": 3,
+  "name": "child/banner",
+  "title": "Hero · Brand + Line + Lead + CTA + Art",
+  "category": "widgets",
+  "icon": "slides",
+  "description": "Hero header with brand (H1), line, lead text, CTA button, and image.",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "anchor": true,
+    "inserter": true
+  },
+  "attributes": {
+    "brand":       { "type": "string", "default": "Creceri" },
+    "line":        { "type": "string", "default": "E-commerce, UX,<br>and Digital Knowledge" },
+    "lead":        { "type": "string", "default": "Discover clear, accessible insights into e-commerce, UX design, and digital strategy. Learn from real-world frameworks and web development concepts." },
+    "buttonText":  { "type": "string", "default": "Explore" },
+    "buttonUrl":   { "type": "string", "default": "#explore" },
+    "buttonClass": { "type": "string", "default": "btn btn-custom text-white" },
+    "image": {
+      "type": "object",
+      "default": {
+        "src": "/wp-content/themes/vite-ttf-child-creceri/assets/images/hero-banner/banner.png",
+        "alt": "3D illustration of a person on a laptop with UX, plant, books and robot elements.",
+        "loading": "eager",
+        "decoding": "async"
+      }
+    },
+    "titleId":  { "type": "string" }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css",
+  "example": {
+    "attributes": {
+      "brand": "Creceri",
+      "line": "E-commerce, UX,<br>and Digital Knowledge",
+      "lead": "Discover clear, accessible insights into e-commerce, UX design, and digital strategy. Learn from real-world frameworks and web development concepts.",
+      "buttonText": "Explore",
+      "buttonUrl": "#explore",
+      "buttonClass": "btn btn-custom text-white",
+      "image": {
+        "src": "/wp-content/themes/vite-ttf-child-creceri/assets/images/hero-banner/banner.png",
+        "alt": "3D illustration of a person on a laptop with UX, plant, books and robot elements.",
+        "loading": "eager",
+        "decoding": "async"
+      }
+    }
+  }
+}

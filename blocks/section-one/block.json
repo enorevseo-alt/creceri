@@ -1,0 +1,160 @@
+{
+  "apiVersion": 3,
+  "name": "child/article-sections",
+  "title": "Article · Sections (Layered)",
+  "category": "widgets",
+  "description": "Build pages from repeatable section types (intro, section 1/2/3, FAQ, Resources…) in any order.",
+  "icon": "editor-table",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "inserter": true
+  },
+  "attributes": {
+    "pageTitle": { "type": "string", "default": "Lorem Ipsum Dolor Sit Amet" },
+
+    "hero": {
+      "type": "object",
+      "default": { "enabled": true, "class": "hero" },
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "class":   { "type": "string" }
+      }
+    },
+
+    "tocEnabled": { "type": "boolean", "default": true },
+
+    "sections": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "layout": { "type": "string" },              
+          "id":     { "type": "string" },
+          "title":  { "type": "string" },
+          "text":   { "type": "string" },
+
+          "callout": { "type": "string" },             
+
+          "bullets": {
+            "type": "array",
+            "default": [],
+            "items": { "type": "string" }              
+          },
+
+          "subsections": {
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id":    { "type": "string" },
+                "title": { "type": "string" },
+                "text":  { "type": "string" }
+              }
+            }
+          },
+
+          "videoUrl": { "type": "string" },            
+
+          "customHtml": { "type": "string" },          
+
+          "items": {
+            "type": "array",                         
+            "default": [],
+            "items": { "type": "string" }
+          },
+
+          "faqs": {
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": { "type": "string" },
+                "answer":   { "type": "string" },
+                "open":     { "type": "boolean" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "pageTitle": "Lorem Ipsum Dolor Sit Amet",
+      "hero": { "enabled": true, "class": "hero" },
+      "tocEnabled": true,
+      "sections": [
+        {
+          "layout": "intro",
+          "id": "intro",
+          "callout": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio..."
+        },
+        {
+          "layout": "sec1",
+          "id": "sec1",
+          "title": "Section 1:  Lorem Ipsum Dolor",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+          "bullets": [
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+            "Aenean lacinia bibendum nulla sed consectetur."
+          ],
+          "subsections": [
+            { "id":"sec1-1", "title":"Subsection 1.1", "text":"Lorem ipsum dolor sit amet..." },
+            { "id":"sec1-2", "title":"Subsection 1.2", "text":"Integer posuere erat a ante..." }
+          ]
+        },
+        {
+          "layout": "sec2",
+          "id": "sec2",
+          "title": "Section 2: Lorem Ipsum Dolor Sit",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+          "videoUrl": "https://www.youtube.com/watch?v=b36AdPgXWvk"
+        },
+        {
+          "layout": "sec3",
+          "id": "sec3",
+          "title": "Section 3: Lorem Ipsum Dolor",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+          "subsections": [
+            { "id":"sec3-1", "title":"Subsection 3.1", "text":"Lorem ipsum dolor sit amet..." },
+            { "id":"sec3-2", "title":"Subsection 3.2", "text":"Curabitur blandit tempus porttitor..." }
+          ],
+          "customHtml": "<blockquote class='twitter-tweet'><p>…</p></blockquote>"
+        },
+        {
+          "layout": "conclusion",
+          "id": "conclusion",
+          "title": "Conclusion",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit…"
+        },
+        {
+          "layout": "resources",
+          "id": "resources",
+          "title": "Resources",
+          "items": [
+            "<b>Resource 1:</b> Lorem ipsum dolor sit amet…",
+            "<b>Resource 2:</b> Aenean lacinia bibendum nulla…"
+          ]
+        },
+        {
+          "layout": "faq",
+          "id": "faq",
+          "title": "Frequently Asked Question",
+          "faqs": [
+            { "question":"Curabitur blandit tempus porttitor?", "answer":"Lorem ipsum dolor sit amet…", "open": true },
+            { "question":"Aenean lacinia bibendum nulla sed consectetur?", "answer":"Integer posuere erat a ante…" },
+            { "question":"Cras mattis consectetur purus sit amet fermentum?", "answer":"Maecenas faucibus mollis interdum." },
+            { "question":"Vestibulum id ligula porta felis euismod semper?", "answer":"Aenean lacinia bibendum nulla sed…" }
+          ]
+        }
+      ]
+    }
+  }
+}

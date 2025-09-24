@@ -1,0 +1,44 @@
+<!-- wp:template-part {"slug":"header-custom"} /-->
+
+<!-- wp:group {"tagName":"main","className":"alignfull","style":{"spacing":{"padding":{"top":"4rem"}}}} -->
+<main class="wp-block-group alignfull" style="padding-top:4rem">
+
+  <!-- Featured image (we'll pad via CSS so it uses your gutter vars) -->
+  <!-- wp:post-featured-image {"align":"full","style":{"spacing":{"margin":{"bottom":"1rem"}}}} /-->
+
+  <!-- Content wrapper with page gutters -->
+  <!-- wp:group {"className":"content-wrap","style":{"spacing":{"padding":{"left":"var(--page-gutter-left)","right":"var(--page-gutter-right)"}}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group content-wrap" style="padding-left:var(--page-gutter-left);padding-right:var(--page-gutter-right)">
+
+    <!-- Meta line (16px via CSS below) -->
+    <!-- wp:group {"className":"entry-meta text-muted","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center","justifyContent":"left"}} -->
+    <div class="wp-block-group entry-meta text-muted">
+      <!-- wp:paragraph -->
+      <p>Written by</p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:post-author-name {"isLink":false,"className":"meta-author"} /-->
+
+      <!-- wp:paragraph -->
+      <p>in</p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:shortcode -->[travel_cat_label]<!-- /wp:shortcode -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- Divider -->
+    <!-- wp:separator {"className":"is-style-wide"} /-->
+
+    <!-- Title -->
+    <!-- wp:post-title {"level":1} /-->
+
+    <!-- Content -->
+    <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+  </div>
+  <!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer-custom"} /-->

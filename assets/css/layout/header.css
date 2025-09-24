@@ -1,0 +1,217 @@
+/* =============================
+   Reset
+============================= */
+*,*::before,*::after{ box-sizing:border-box; }
+
+:root {
+  --brand: #8a3a33;
+  --ink: #1f2328;
+  --muted: #6b6f75;
+  --rose-500: #962E2A;        /* primary */
+  --rose-100: #F5E8E6;        /* light tint for borders */
+  --card: #ffffff;
+  --panel:#ffffff;
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(149, 46, 42, .08),
+            0 2px 6px rgba(17, 24, 39, .06);
+
+  --rail-gap: 14px;
+  --height-desktop: 380px;
+  --height-mobile: 220px;
+
+  /* expanded vs collapsed widths */
+  --expanded: 64%;
+  --collapsed: 9%;
+
+  /* type */
+  --fs-h2: 32px;
+  --fs-h3: 22px;
+  --fs-body: 16px;
+}
+
+body{
+  margin:0;
+  font: 500 16px/1.3 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  /* Push page down by the header height (JS sets --header-h) */
+  padding-top: var(--header-h, 64px);
+}
+
+/* =============================
+   Header (fixed)
+============================= */
+.site-header{
+  position: fixed;
+  inset: 0 0 auto 0;            /* top:0; left:0; right:0; */
+  z-index: 1000;
+
+  background-color: transparent; /* transparent at the very top */
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+
+  /* Smooth transition into solid on scroll/open */
+  transition:
+    background-color .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+/* Inner layout */
+.header-inner{
+  max-width:1500px;
+  margin:0 auto;
+  padding:14px 20px;
+  display:grid;
+  grid-template-columns:auto 1fr auto; /* logo | spacer | nav/burger */
+  align-items:center;
+  gap:12px;
+}
+
+/* Logo */
+.brand{
+  display:flex; align-items:center; gap:10px;
+  text-decoration:none; color:var(--brand, #962E2A); font-weight:600;
+}
+.brand-badge{ width:22px; height:22px; border-radius:8px; background:var(--brand, #962E2A); }
+
+/* Optional hidden toggles (checkbox UX) */
+.nav-toggle, .sub-toggle{ display:none; }
+
+/* =============================
+   Nav (desktop)
+============================= */
+nav[aria-label="Main"]{ grid-column:3; justify-self:end; }
+.nav-list{
+  list-style:none; margin:0; padding:0;
+  display:flex; align-items:center; gap:28px; flex-wrap:nowrap;
+}
+.nav-link, .nav-button{
+  text-decoration:none; color:var(--brand, #962E2A); font-weight:520;
+  padding:8px 12px; border-radius:10px;
+  display:inline-flex; align-items:center; gap:6px;
+  border:0; background:transparent; cursor:pointer; white-space:nowrap;
+}
+.nav-list > li{ flex:none; }
+.nav-link:hover, .nav-button:hover{ opacity:.85; }
+
+/* Active pill */
+.nav-link.active{
+  background: var(--brand, #962E2A);
+  color: #fff;
+  border-radius: 10px;
+  padding:8px 16px;
+}
+
+/* Dropdown (desktop) */
+.dropdown{ position:relative; }
+.caret{ width:10px; height:10px; display:inline-block; transition: transform .2s ease; }
+.submenu{
+  position:absolute; left:0; top:100%;
+  min-width:220px; background:#fff; border:1px solid #eee; border-radius:12px;
+  padding:8px; margin:0; list-style:none; box-shadow:0 12px 28px rgba(0,0,0,.08);
+  display:none; z-index:1000;
+}
+.submenu a{
+  display:block; padding:10px 12px; border-radius:8px; text-decoration:none; color:var(--brand, #962E2A);
+}
+.submenu a:hover{ background:#faf6f6; }
+
+/* Show dropdown on hover (desktop only) */
+@media (hover:hover){
+  .dropdown:hover > .submenu{ display:block; }
+  .dropdown:focus-within > .submenu{ display:block; }
+}
+
+/* =============================
+   Burger
+============================= */
+.menu-toggle{
+  justify-self:end; display:none; cursor:pointer;
+  border:1px solid transparent;
+  background: transparent;          /* transparent when header is transparent */
+  border-radius:10px; padding:8px 10px;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.menu-toggle:focus-visible{ outline:2px solid rgba(150,46,42,.6); outline-offset:2px; }
+.icon{ width:24px; height:24px; display:block; }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+/* =============================
+   SOLID state (on scroll OR mobile menu open)
+============================= */
+.site-header.is-scrolled,
+.site-header.is-open{
+  background-color: #fff;                   /* solid white */
+  border-bottom-color: rgba(0,0,0,.06);
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+}
+
+/* Make burger look proper on solid header */
+.site-header.is-scrolled .menu-toggle,
+.site-header.is-open .menu-toggle{
+  background:#fff;
+  border-color: rgba(0,0,0,.06);
+}
+
+/* =============================
+   Mobile
+============================= */
+@media (max-width: 768px){
+  .header-inner{
+    grid-template-columns: 1fr auto;   /* logo | burger */
+    grid-auto-rows: auto;
+  }
+
+  .menu-toggle{
+    display:block;
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 2;
+  }
+
+  /* Nav panel sits below the header row; hidden by default */
+  nav[aria-label="Main"]{
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width:100%;
+    display:none;
+  }
+
+  /* Show nav when the checkbox is checked (if you use it) */
+  .nav-toggle:checked ~ nav[aria-label="Main"]{ display:block; }
+
+  /* When menu is open we make header solid and style the panel */
+  .site-header.is-open nav[aria-label="Main"]{
+    background:#fff;
+    border-top: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  }
+
+  /* Vertical list */
+  .nav-list{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    padding:12px 6px 16px;
+  }
+
+  /* Mobile dropdowns (checkbox-driven if you add .sub-toggle) */
+  .dropdown .submenu{
+    position:static;
+    display:none;
+    border:0;
+    box-shadow:none;
+    padding:0;
+    margin:0 0 6px 14px;
+  }
+  .sub-toggle:checked + .nav-button + .submenu{ display:block; }
+  .sub-toggle:checked + .nav-button .caret{ transform: rotate(180deg); }
+  .nav-button{ width:100%; justify-content:space-between; }
+}
+
+/* =============================
+   Motion preference
+============================= */
+@media (prefers-reduced-motion:no-preference){
+  .submenu{ transition: opacity .15s ease, transform .15s ease; transform: translateY(4px); }
+  .dropdown:hover > .submenu{ opacity:1; transform:none; }
+}
