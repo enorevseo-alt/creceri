@@ -1,23 +1,41 @@
 {
-  "apiVersion": 3,
+  "apiVersion": 2,
   "name": "child/banner",
-  "title": "Hero · Brand + Line + Lead + CTA + Art",
-  "category": "widgets",
-  "icon": "slides",
-  "description": "Hero header with brand (H1), line, lead text, CTA button, and image.",
-  "supports": {
-    "html": false,
-    "align": ["wide", "full"],
-    "anchor": true,
-    "inserter": true
-  },
+  "title": "Banner / Hero (Child)",
+  "category": "design",
+  "icon": "cover-image",
+  "description": "Brand + line + lead + CTA/Search + artwork with responsive layout, background controls, and sizing.",
+  "keywords": ["hero", "banner", "landing"],
+  "supports": { "anchor": true, "html": false },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css",
+  "editorScript": "file:index.js",
+  "render": "file:render.php",
   "attributes": {
-    "brand":       { "type": "string", "default": "Creceri" },
-    "line":        { "type": "string", "default": "E-commerce, UX,<br>and Digital Knowledge" },
-    "lead":        { "type": "string", "default": "Discover clear, accessible insights into e-commerce, UX design, and digital strategy. Learn from real-world frameworks and web development concepts." },
-    "buttonText":  { "type": "string", "default": "Explore" },
-    "buttonUrl":   { "type": "string", "default": "#explore" },
+    "anchor": { "type": "string" },
+    "className": { "type": "string" },
+
+    "brand": { "type": "string", "default": "Creceri" },
+    "brandSize": {
+      "type": "number",
+      "default": 0,
+      "description": "Fixed brand font-size in px (100–300). 0 = auto responsive."
+    },
+
+    "line": {
+      "type": "string",
+      "default": "E-commerce, UX,<br>and Digital Knowledge"
+    },
+    "lead": {
+      "type": "string",
+      "default": "Discover clear, accessible insights into e-commerce, UX design, and digital strategy. Learn from real-world frameworks and web development concepts."
+    },
+
+    "buttonType": { "type": "string", "enum": ["Button", "Search"], "default": "Button" },
+    "buttonText": { "type": "string", "default": "Explore" },
+    "buttonUrl":  { "type": "string", "default": "#explore" },
     "buttonClass": { "type": "string", "default": "btn btn-custom text-white" },
+
     "image": {
       "type": "object",
       "default": {
@@ -27,24 +45,18 @@
         "decoding": "async"
       }
     },
-    "titleId":  { "type": "string" }
-  },
-  "render": "file:./render.php",
-  "style": "file:./style.css",
-  "example": {
-    "attributes": {
-      "brand": "Creceri",
-      "line": "E-commerce, UX,<br>and Digital Knowledge",
-      "lead": "Discover clear, accessible insights into e-commerce, UX design, and digital strategy. Learn from real-world frameworks and web development concepts.",
-      "buttonText": "Explore",
-      "buttonUrl": "#explore",
-      "buttonClass": "btn btn-custom text-white",
-      "image": {
-        "src": "/wp-content/themes/vite-ttf-child-creceri/assets/images/hero-banner/banner.png",
-        "alt": "3D illustration of a person on a laptop with UX, plant, books and robot elements.",
-        "loading": "eager",
-        "decoding": "async"
-      }
-    }
+
+    "imagePosition": { "type": "string", "enum": ["left", "right"], "default": "right" },
+    "imageLocation": { "type": "string", "enum": ["top", "center", "bottom"], "default": "center" },
+    "imageSize":     { "type": "string", "enum": ["s", "m", "l", "xl"], "default": "l" },
+    "imageFlip":     { "type": "string", "enum": ["none", "mirror"], "default": "none" },
+
+    "textAlign": { "type": "string", "enum": ["auto", "left", "center", "right"], "default": "auto" },
+    "textScale": { "type": "number", "default": 1 },
+
+    "bgSpot":  { "type": "string", "enum": ["left", "right", "top", "bottom"], "default": "left" },
+    "bgAngle": { "type": "number", "default": 230 },
+
+    "imgShadow": { "type": "string", "enum": ["On", "Off"], "default": "On" }
   }
 }
